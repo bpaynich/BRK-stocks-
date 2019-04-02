@@ -5,69 +5,120 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Bootstrap 4, from LayoutIt!</title>
+    <title>Dow Stocks</title>
 
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
   </head>
   <body>
 
-    <div class="container-fluid">
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-md-12">
-			<ul class="nav">
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Home</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Profile</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled" href="#">Messages</a>
-				</li>
-				<li class="nav-item dropdown ml-md-auto">
-					 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">Dropdown link</a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-						 <a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
-						<div class="dropdown-divider">
-						</div> <a class="dropdown-item" href="#">Separated link</a>
-					</div>
-				</li>
-			</ul>
-			<div class="dropdown">
-				 
-				<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-					Action
-				</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					 <a class="dropdown-item disabled" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+			<div class="col-md-2">
 				</div>
-			</div>
-			<h3>
-				h3. Lorem ipsum dolor sit amet.
-			</h3>
+			<div class="col-md-8">
+		<div class="col-md-12">
+			<br/>
+			<ul class="nav">
+					<li class="nav-item">
+						<a class="nav-link active" href="index.html">Dow Stocks</a>
+					</li>
+					<li class="nav-item">
+							<a class="nav-link " href="company.html">Company info </a>
+					</li>				
+					<li class="nav-item">
+							<a class="nav-link " href="classic.html">Classic </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " href="modern.html">Modern</a>
+					</li>
+					<li>
+						<a class="nav-link active dropdown-menu-right" href="writepdf.html">Write PDF</a>
+					</li>
+				</ul>
+
+			<br/>
+			<h3>Dow Stocks</h3>
 			<p>
-				Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+				
 			</p>
 			<div class="row">
 				<div class="col-md-4">
-					 
-					<address>
-						 <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890
-					</address>
-					<p>
-						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p>
+						<table class="table table-sm">
+						<thead><tr class="table table-sm"><th>Company</th></tr></thead><tbody>
+						 <tr><td>MMM 3M</td></tr>
+						 <tr><td>AXP American Express</td></tr>
+						 <tr><td>AAPL Apple</td></tr>
+						 <tr><td>BA Boeing</td></tr>
+						 <tr><td>CAT Caterpillar</td></tr>
+						 <tr><td>CVX Chevron</td></tr>
+						 <tr><td>CSCO Cisco</td></tr>
+						 <tr><td>KO Coca-Cola</td></tr>
+						 <tr><td>DIS Disney</td></tr>
+						 <tr><td>DWDP DowDuPont Inc</td></tr>
+						 <tr><td>XOM Exxon Mobil</td></tr>
+						 <tr><td>GS Goldman Sachs</td></tr>
+						 <tr><td>HD Home Depot</td></tr>
+						 <tr><td>IBM IBM</td></tr>
+						 <tr><td>INTC Intel</td></tr>
+						 <tr><td>JNJ Johnson & Johnson</td></tr>
+						 <tr><td>JPM JPMorgan Chase</td></tr>
+						 <tr><td>MCD McDonald's</td></tr>
+						 <tr><td>MRK Merck</td></tr>
+						 <tr><td>MSFT Microsoft</td></tr>
+						 <tr><td>NKE Nike</td></tr>
+						 <tr><td>PFE Pfizer</td></tr>
+						 <tr><td>PG Procter & Gamble</td></tr>
+						 <tr><td>TRV Travelers Companies Inc</td></tr>
+						 <tr><td>UTX United Technologies</td></tr>
+						 <tr><td>UNH UnitedHealth</td></tr>
+						 <tr><td>VZ Verizon</td></tr>
+						 <tr><td>V Visa</td></tr>
+						 <tr><td>WMT Wal-Mart</td></tr>
+						 <tr><td>WBA Walgreen</td></tr>
+						</tbody></table>
+			
 				</div>
 				<div class="col-md-8">
-					<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg">
+						<div id="map" style="height: 300px;"></div>
+						<script type="text/javascript">
+							// The first parameter are the coordinates of the center of the map
+							// The second parameter is the zoom level
+							// var latt = {{ lat_c }}
+							// var longg = {{ long_c }}
+							var latt = 40
+							var longg = -95
+							var map = L.map('map').setView([latt, longg], 3);
+							// {s}, {z}, {x} and {y} are placeholders for map tiles
+							// {x} and {y} are the x/y of where you are on the map
+							// {z} is the zoom level
+							// {s} is the subdomain of cartodb
+								var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+								attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+							});
+							// Now add the layer onto the map
+							map.addLayer(layer);
+							L.marker([latt, longg]).addTo(map)
+							.bindPopup("<strong>Name</strong><br/>Street<br />City, State Zip<br />").openPopup();
+							//.bindPopup("<strong>{{ arena_name }}</strong><br/>{{ arena_street}}<br />{{ arena_city }}, {{ arena_state}} {{ arena_zip }}<br />").openPopup();
+							</script>
+							<br/>
+									<h3>Dow Jones</h3><br/>
+									<p>
+											The Dow Jones Industrial Average (DJIA), or simply the Dow (/ˈdaʊ/), is a stock market index that indicates the value of 30 large, publicly owned companies based in the United States, and how they have traded in the stock market during various periods of time.[4] The value of the Dow is not a weighted arithmetic mean[5] and does not represent its component companies' market capitalization, but rather the sum of the price of one share of stock for each component company. The sum is corrected by a factor which changes whenever one of the component stocks has a stock split or stock dividend, so as to generate a consistent value for the index.	
+									</p>
 				</div>
 			</div>
 		</div>
+	</div>
+<div class="col-md-2">
+</div>
+
 	</div>
 </div>
 

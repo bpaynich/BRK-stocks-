@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dow Stocks</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+  </head>
+  <body>
+
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-2">
+				</div>
+			<div class="col-md-8">
+		<div class="col-md-12">
+			<br/>
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="nav-link active" href="index.html">Dow Stocks</a>
+				</li>
+				<li class="nav-item">
+						<a class="nav-link " href="company.html">Company info </a>
+				</li>				
+				<li class="nav-item">
+						<a class="nav-link " href="classic.html">Classic </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " href="modern.html">Modern</a>
+				</li>
+				<li>
+					<a class="nav-link active dropdown-menu-right" href="writepdf.html">Write PDF</a>
+				</li>
+			</ul>
+
+			<br/>
+			<h3>Dow Stocks</h3>
+			<p>
+				
+			</p>
+			<div class="row">
+				<div class="col-md-4">
+						<!-- <address>
+								<strong>{{ arena_name }}</strong><br /> 
+								{{ arena_street}}<br /> 
+								{{ arena_city }}, {{ arena_state}} {{ arena_zip }}<br />
+						 </address> -->
+					<address>
+						 <strong>Apple</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890
+					</address>
+					<p>
+						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+					</p>
+				</div>
+				<div class="col-md-8">
+						<div id="map" style="height: 300px;"></div>
+						<script type="text/javascript">
+							// The first parameter are the coordinates of the center of the map
+							// The second parameter is the zoom level
+							// var latt = {{ lat_c }}
+							// var longg = {{ long_c }}
+							var latt = 40
+							var longg = -95
+							var map = L.map('map').setView([latt, longg], 6);
+							// {s}, {z}, {x} and {y} are placeholders for map tiles
+							// {x} and {y} are the x/y of where you are on the map
+							// {z} is the zoom level
+							// {s} is the subdomain of cartodb
+								var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+								attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+							});
+							// Now add the layer onto the map
+							map.addLayer(layer);
+							L.marker([latt, longg]).addTo(map)
+							.bindPopup("<strong>Name</strong><br/>Street<br />City, State Zip<br />").openPopup();
+							//.bindPopup("<strong>{{ arena_name }}</strong><br/>{{ arena_street}}<br />{{ arena_city }}, {{ arena_state}} {{ arena_zip }}<br />").openPopup();
+							</script>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="col-md-2">
+</div>
+
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
