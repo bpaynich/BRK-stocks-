@@ -41,7 +41,7 @@
 						</ul>
 				<div class="row">
 					
-					<div class="col-md-6">
+					<div class="col-md-9">
 							<br/><br/>
 						<h3>
 							Write PDF
@@ -50,12 +50,25 @@
 						<p>
 							Select the Dow stock then click on the CreatePDF button to generate the PDF Summary
 						</p>
-					</div>
-					<div class="col-md-6">
-						<br/><br/>
+						<form action="/info" method="POST">
+							<select class="form-control" name="team">
+										<option value="">select stock</option>
+										<option value="INTC">Intel</option>
+										<option value="AAPL">Apple</option>
+										<option value="BAC">Bank of America</option>
+										<!-- {% for Tm in team_list %}	 -->
+										<!-- <option value="{{ Tm }}">{{ Tm }}</option> -->
+										<!-- {% endfor %} -->
+							</select>
+							<br>
+						</form>
 						<button type="button" class="btn btn-success">
 							Create PDF
 						</button>
+					</div>
+					<div class="col-md-3">
+						<br/><br/><br/><br/><br/><br/>
+
 					</div>
 				</div>
 			</div>
