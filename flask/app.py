@@ -30,7 +30,7 @@ from flask import Flask, jsonify, render_template, request
 
 # Database Setup
 #################################################
-engine = create_engine("mysql://root:Batman!99@localhost:3306/season_stats_db")
+engine = create_engine("mysql://root:*********@localhost:3306/season_stats_db")
 
 # Create our session (link) from Python to the DB
 session = Session(engine)
