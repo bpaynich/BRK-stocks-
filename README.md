@@ -19,16 +19,16 @@ Trading Data - www.worldtradingdata.com<br/>
 
 Things to do:
 
-Scrape lat/long data for list of headquarters
-Scrape general information from wikipedia?  or some database for company information
-Display All headquarter markers on main page
-Display filtered headquarters on company page
-Chart Stock Historical Chart price per stock
-Chart Stock Price over last 12 months
-Chart Historical Stock Volume
-Chart Average percentage change over year, but Day of year
-SVG showing largest 1 day increase and Day
-SVG showing largest 1 day decrease and Day
-SVG showing Day of year that stock closes higher during the year and by what percentage
-SVG showing Day of year that stock closes lower during the eyar and what percentage
-Install PDF.js and create PDF displaying information
+Scrape lat/long data for list of headquarters<br/>
+Scrape general information from wikipedia?  or some database for company information<br/>
+Display All headquarter markers on main page<br/>
+Display filtered headquarters on company page<br/>
+Chart Stock Historical Chart price per stock<br/>
+Chart Stock Price over last 12 months<br/>
+Chart Historical Stock Volume<br/>
+Chart Average percentage change over year, but Day of year<br/>
+SVG showing largest 1 day increase and Day<br/>
+SVG showing largest 1 day decrease and Day<br/>
+SVG showing Day of year that stock closes higher during the year and by what percentage<br/>
+SVG showing Day of year that stock closes lower during the eyar and what percentage<br/>
+Install PDF.js and create PDF displaying information<br/>
