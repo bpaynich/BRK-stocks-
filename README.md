@@ -16,6 +16,8 @@ Katherine - Take CSV files and experiment with charting (use matplotlib, plotly.
 DOW stocks - https://www.investopedia.com/terms/d/dow-30.asp<br/>
 Client side PDF gen - https://github.com/MrRio/jsPDF<br/>
 Trading Data - www.worldtradingdata.com<br/>
+Quandl -  https://www.quandl.com/tables/ZFB/ZACKS-MT
+Quandl - https://www.quandl.com/tables/ZFB/ZACKS-MKTV
 
 Things to do:
 
@@ -32,3 +34,4 @@ SVG showing largest 1 day decrease and Day<br/>
 SVG showing Day of year that stock closes higher during the year and by what percentage<br/>
 SVG showing Day of year that stock closes lower during the eyar and what percentage<br/>
 Install PDF.js and create PDF displaying information<br/>
+Heroku upload of app<br/>
