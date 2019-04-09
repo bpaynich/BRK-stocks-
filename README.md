@@ -16,8 +16,9 @@ Katherine - Take CSV files and experiment with charting (use matplotlib, plotly.
 DOW stocks - https://www.investopedia.com/terms/d/dow-30.asp<br/>
 Client side PDF gen - https://github.com/MrRio/jsPDF<br/>
 Trading Data - www.worldtradingdata.com<br/>
-Quandl -  https://www.quandl.com/tables/ZFB/ZACKS-MT
-Quandl - https://www.quandl.com/tables/ZFB/ZACKS-MKTV
+Quandl -  https://www.quandl.com/tables/ZFB/ZACKS-MT<br/>
+Quandl - https://www.quandl.com/tables/ZFB/ZACKS-MKTV<br/>
+https://stocknewsapi.com/pricing<br/>
 
 Things to do:
 
