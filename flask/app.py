@@ -40,11 +40,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def index_query():
-    sqlite_conn = sqlite3.connect('../db/stock.sqlite')
+    sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT * FROM address_api_table').fetchall()
-    return render_template("index.html", rows=rows)
     sqlite_conn.close()
+    return render_template("index.html", rows=rows)
+
 @app.route("/company")
 def company_query():
     return render_template("company.html")
@@ -63,7 +64,7 @@ def pdf_query():
 
 @app.route("/api/address_api")
 def address_api_query():
-    sqlite_conn = sqlite3.connect('../db/stock.sqlite')
+    sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT * FROM address_api_table').fetchall()
     sqlite_conn.close()
@@ -71,7 +72,7 @@ def address_api_query():
 
 @app.route("/api/company_details")
 def company_details_query():
-    sqlite_conn = sqlite3.connect('../db/stock.sqlite')
+    sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT * FROM company_details').fetchall()
     sqlite_conn.close()
@@ -79,7 +80,7 @@ def company_details_query():
 
 @app.route("/api/stock_quarter_close")
 def stock_quarter_close_query():
-    sqlite_conn = sqlite3.connect('../db/stock.sqlite')
+    sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT * FROM stock_quarter_close').fetchall()
     sqlite_conn.close()
@@ -87,7 +88,7 @@ def stock_quarter_close_query():
 
 @app.route("/api/master")
 def master_query():
-    sqlite_conn = sqlite3.connect('../db/stock.sqlite')
+    sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT * FROM master').fetchall()
     sqlite_conn.close()
