@@ -1,0 +1,1 @@
+SELECT * FROM stock_db.stock_quarter_close;
