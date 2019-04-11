@@ -26,6 +26,7 @@ warnings.filterwarnings('ignore')
 #################################################
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
 
 #################################################
 # Flask Routes
@@ -33,10 +34,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def index_query():
-    sqlite_conn = sqlite3.connect('db/stock.sqlite')
-    cursor = sqlite_conn.cursor()
-    rows = cursor.execute('SELECT * FROM address_api_table').fetchall()
-    sqlite_conn.close()
     return render_template("index.html")
 
 @app.route("/company")
@@ -70,7 +67,6 @@ def names_query():
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT comp_name_2, ticker FROM company_details').fetchall()
     sqlite_conn.close()
-    #return jsonify([member[0] for member in cursor.description])
     return jsonify(rows)
 
 @app.route("/api/addresses")
@@ -89,111 +85,29 @@ def companies_details_query():
     sqlite_conn.close()
     return jsonify(rows)
 
-# @app.route("/api/company_detail/<ticker>")
-# def company_detail_query():
-#     sqlite_conn = sqlite3.connect('db/stock.sqlite')
-#     cursor = sqlite_conn.cursor()
-#     rows = cursor.execute('SELECT * FROM company_details WHERE ticker = {}').fetchone()
-#     sqlite_conn.close()
-#     return jsonify(rows)
-
-
 @app.route("/api/company_detail/<ticker_name>")
 def company_detail_query(ticker_name):
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute("SELECT * FROM company_details WHERE ticker = ?", (ticker_name,)).fetchone()
-    dic = {}
-    dic["ticker"] = rows[2]
-    dic["comp_name"] = rows[3]
-    dic["comp_name_2"] = rows[4]
-    dic["exchange"] = rows[5]
-    dic["currency_code"] = rows[6]
-    dic["comp_desc"] = rows[7]
-    dic["address_line_1"] = rows[8]
-    dic["city"] = rows[10]
-    dic["state_code"] = rows[11]
-    dic["country_code"] = rows[12]
-    dic["post_code"] = rows[13]
-    dic["phone_nbr"] = rows[14]
-    dic["fax_nbr"] = rows[15]
-    dic["comp_url"] = rows[16]
-    dic["sic_4_desc"] = rows[20]
-    dic["emp_cnt"] = rows[27]
-    # sqlite_conn.row_factory = functions.dict_factory
-
-    # sqlite_conn.close()
-    return jsonify(dic)
-
-
-# @app.route("/api/company_details")
-# def company_details():
-#     conn = sqlite3.connect("db/stock.sqlite")
-#     company_details_df = pd.read_sql_query("SELECT * FROM company_details;", conn)
-#     jsonfiles = json.loads(company_details_df.to_json())
-#     return jsonify(jsonfiles)
-
-
-
-# @app.route("/api/company_details")
-# def company_details_query():
-#     ticker = request.args.get('ticker')
-#     if not ticker:
-#         return "There is no ticker query parameter"
-#     return jsonify(data_extract.company_details(ticker))
-
-
-# @app.route("/api/company_details/<ticker>")
-# def sample_metadata(ticker):
-    
-#     sel = [
-#         company_details.ticker,
-#         company_details.comp_name_2,
-#         company_details.comp_desc,
-#         company_details.exchange,
-#         company_details.address_line_1,
-#         company_details.city,
-#         company_details.state_code,
-#     ]
-
-#     results = db.session.query(*sel).filter(company_details.ticker == ticker).all()
-
-#     # Create a dictionary entry for each row of metadata information
-#     company_details = {}
-#     for result in results:
-#         company_details["ticker"] = result[2]
-#         company_details["comp_name_2"] = result[4]
-#         company_details["comp_desc"] = result[7]
-#         company_details["exchange"] = result[5]
-#         company_details["address_line_1"] = result[8]
-#         company_details["city"] = result[10]
-#         company_details["state_code"] = result[11]
-
-#     print(company_details)
-#     return jsonify(company_details)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    dict = {}
+    dict["Company"] = rows[4]
+    dict["Address"] = rows[8]
+    dict["City"] = rows[10]
+    dict["State"] = rows[11]
+    dict["Zip"] = rows[13]
+    # dict["phone_nbr"] = rows[14]
+    # dict["fax_nbr"] = rows[15]
+    dict["Country"] = rows[12]
+    dict["Site"] = rows[16]
+    dict["Industry"] = rows[20]
+    dict["Employees"] = rows[27]
+    dict["Ticker"] = rows[2]
+    dict["Exchange"] = rows[5]
+    dict["Currency"] = rows[6]
+    # dict["comp_desc"] = rows[7]
+    sqlite_conn.close()
+    return jsonify(dict)
 
 @app.route("/api/stock_quarter_close")
 def stock_quarter_close_query():
@@ -203,13 +117,29 @@ def stock_quarter_close_query():
     sqlite_conn.close()
     return jsonify(rows)
 
-@app.route("/api/master")
-def master_query():
+@app.route("/api/master/<ticker_name_master>")
+def master_query(ticker_name_master):
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
-    rows = cursor.execute('SELECT * FROM master WHERE Name = "AAPL"').fetchall()
+    rows = cursor.execute("SELECT * FROM master WHERE Name = ?", (ticker_name_master,)).fetchall()
+    dates = {}
+    df = []
+    num_rows = len(rows)
+    for x in range(num_rows):
+        dates["Index"] = rows[x][0]
+        dates["Ticker"] = rows[x][7]
+        dates["Date"] = rows[x][1]
+        dates["Open"] = rows[x][2]
+        dates["Close"] = rows[x][3]
+        dates["High"] = rows[x][4]
+        dates["Low"] = rows[x][5]
+        dates["Volume"] = rows[x][6]
+        #print(x)
+        #print(dates)
+        #print("\n")
+        df.append(dates.copy())
     sqlite_conn.close()
-    return jsonify(rows)
+    return jsonify(df)
 
 if __name__ == "__main__":
     app.run(debug=True)

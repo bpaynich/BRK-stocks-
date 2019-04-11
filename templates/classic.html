@@ -5,13 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Classic Indicators</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
+	<title>Classic Indicators</title>
 	
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
 
   </head>
   <body>
@@ -47,99 +44,15 @@
 						This page provides a set of classic indicators for dow stocks.  It includes overall performance and volume metrics.
 					</p>
 					<div class="row">
-						<div class="col-md-4">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>
-											#
-										</th>
-										<th>
-											Product
-										</th>
-										<th>
-											Payment Taken
-										</th>
-										<th>
-											Status
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											1
-										</td>
-										<td>
-											TB - Monthly
-										</td>
-										<td>
-											01/04/2012
-										</td>
-										<td>
-											Default
-										</td>
-									</tr>
-									<tr class="table-active">
-										<td>
-											1
-										</td>
-										<td>
-											TB - Monthly
-										</td>
-										<td>
-											01/04/2012
-										</td>
-										<td>
-											Approved
-										</td>
-									</tr>
-									<tr class="table-success">
-										<td>
-											2
-										</td>
-										<td>
-											TB - Monthly
-										</td>
-										<td>
-											02/04/2012
-										</td>
-										<td>
-											Declined
-										</td>
-									</tr>
-									<tr class="table-warning">
-										<td>
-											3
-										</td>
-										<td>
-											TB - Monthly
-										</td>
-										<td>
-											03/04/2012
-										</td>
-										<td>
-											Pending
-										</td>
-									</tr>
-									<tr class="table-danger">
-										<td>
-											4
-										</td>
-										<td>
-											TB - Monthly
-										</td>
-										<td>
-											04/04/2012
-										</td>
-										<td>
-											Call in to confirm
-										</td>
-									</tr>
-								</tbody>
-							</table>
+						<div class="col-md-5">
+								<div id="company_info" class="panel-body">
+									<table id="data_table" class="table">
+										<tbody>
+										</tbody>
+									</table>
+								</div>
 						</div>
-						<div class="col-md-8">
+						<div class="col-md-7">
 								<form action="/info" method="POST">
 									<select class="form-control" name="team">
 										<option value="">select stock</option>
@@ -176,23 +89,28 @@
 									</select>
 									<br>
 								</form>
-							<h3>
-								Company Performance Over time
-							</h3><img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+							<strong>
+									Last 12 months performance
+							</strong>
+								
+							
+							<div id="twelve_months_performance"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-6">
-									<h3>
+									<strong>
 										Stock Volume Over Time
-									</h3>
+									</strong>
+									<div id="volume_over_time"></div>
 								</div>
 								<div class="col-md-6">
-									<h3>
+									<stong>
 										Percentage increase Over Time
-									</h3>
+									</strong>
+									<div id="increase_over_time"></div>
 								</div>
 							</div>
 						</div>
@@ -202,8 +120,9 @@
 				</div>
 			</div>
 		</div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+		<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  		<script src="{{ url_for('static', filename='js/classic.js') }}"></script>
   </body>
 </html>
