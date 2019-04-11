@@ -36,13 +36,13 @@ app.config['JSON_SORT_KEYS'] = False
 def index_query():
     return render_template("index.html")
 
-@app.route("/company")
-def company_query():
-    return render_template("company.html")
-
 @app.route("/classic")
 def classic_query():
     return render_template("classic.html")
+
+@app.route("/company")
+def company_query():
+    return render_template("company.html")
 
 @app.route("/modern")
 def modern_query():
