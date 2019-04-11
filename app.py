@@ -7,7 +7,7 @@ import gmaps
 import json
 import warnings
 import gmaps.geojson_geometries
-import data_extract
+import functions    
 
 from flask import Flask, jsonify, render_template, request
 
@@ -61,8 +61,8 @@ def locations_query():
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT latitude, longitude FROM address_api_table').fetchall()
     sqlite_conn.close()
-    #return jsonify([member[0] for member in cursor.description], rows)
-    return jsonify(rows)
+    return jsonify([member[0] for member in cursor.description], rows)
+    #return jsonify(rows)
 
 @app.route("/api/names")
 def names_query():
@@ -89,13 +89,50 @@ def companies_details_query():
     sqlite_conn.close()
     return jsonify(rows)
 
-@app.route("/api/company_detail")
-def company_detail_query():
+# @app.route("/api/company_detail/<ticker>")
+# def company_detail_query():
+#     sqlite_conn = sqlite3.connect('db/stock.sqlite')
+#     cursor = sqlite_conn.cursor()
+#     rows = cursor.execute('SELECT * FROM company_details WHERE ticker = {}').fetchone()
+#     sqlite_conn.close()
+#     return jsonify(rows)
+
+
+@app.route("/api/company_detail/<ticker_name>")
+def company_detail_query(ticker_name):
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
-    rows = cursor.execute('SELECT * FROM company_details WHERE ticker = "INTC"').fetchall()
-    sqlite_conn.close()
-    return jsonify(rows)
+    rows = cursor.execute("SELECT * FROM company_details WHERE ticker = ?", (ticker_name,)).fetchone()
+    dic = {}
+    dic["ticker"] = rows[2]
+    dic["comp_name"] = rows[3]
+    dic["comp_name_2"] = rows[4]
+    dic["exchange"] = rows[5]
+    dic["currency_code"] = rows[6]
+    dic["comp_desc"] = rows[7]
+    dic["address_line_1"] = rows[8]
+    dic["city"] = rows[10]
+    dic["state_code"] = rows[11]
+    dic["country_code"] = rows[12]
+    dic["post_code"] = rows[13]
+    dic["phone_nbr"] = rows[14]
+    dic["fax_nbr"] = rows[15]
+    dic["comp_url"] = rows[16]
+    dic["sic_4_desc"] = rows[20]
+    dic["emp_cnt"] = rows[27]
+    # sqlite_conn.row_factory = functions.dict_factory
+
+    # sqlite_conn.close()
+    return jsonify(dic)
+
+
+# @app.route("/api/company_details")
+# def company_details():
+#     conn = sqlite3.connect("db/stock.sqlite")
+#     company_details_df = pd.read_sql_query("SELECT * FROM company_details;", conn)
+#     jsonfiles = json.loads(company_details_df.to_json())
+#     return jsonify(jsonfiles)
+
 
 
 # @app.route("/api/company_details")
