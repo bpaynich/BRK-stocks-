@@ -6,7 +6,7 @@ function buildMetadata(ticker) {
    const url = "/api/company_detail/" + ticker;
     // const url = "/api/company_detail/INTC";
 
-    let tbody = d3.select("#company_info");
+    let tbody = d3.select("#company_table");
 
     tbody.html("");
     
