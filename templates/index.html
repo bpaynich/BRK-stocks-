@@ -5,18 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dow Stocks</title>
-
-    <meta name="description" content="Source code generated using layoutit.com">
-    <meta name="author" content="LayoutIt!">
+  <title>Dow Stocks</title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-		<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-  </head>
-  <body>
+	 <!-- Leaflet JS & CSS -->
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+	 integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+	 crossorigin=""/>
+	 <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+	 integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+	 crossorigin=""></script>
 
+	 <!-- d3 JS -->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+
+	 <!-- Marker Cluster JS & CSS -->
+	 <script type="text/javascript" src="https://unpkg.com/leaflet.markercluster@1.0.3/dist/leaflet.markercluster.js"></script>
+	 <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.css">
+	 <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.3/dist/MarkerCluster.Default.css">
+
+	 <!-- Our CSS -->
+	 <link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+
+
+	</head>
+  <body>
 <div class="container-fluid">
 	<div class="row">
 			<div class="col-md-2">
@@ -42,97 +57,68 @@
 					</li>
 				</ul>
 
-			<br/>
-			<h3>Dow Stocks</h3>
+			<br/><br/>
+			<h3>Dow Companies</h3>
 			<p>
 				
 			</p>
 			<div class="row">
 				<div class="col-md-4">
 						<table class="table table-sm">
-						<thead><tr class="table table-sm"><th>Company</th></tr></thead><tbody>
-						 <tr><td>MMM 3M</td></tr>
-						 <tr><td>AXP American Express</td></tr>
-						 <tr><td>AAPL Apple</td></tr>
-						 <tr><td>BA Boeing</td></tr>
-						 <tr><td>CAT Caterpillar</td></tr>
-						 <tr><td>CVX Chevron</td></tr>
-						 <tr><td>CSCO Cisco</td></tr>
-						 <tr><td>KO Coca-Cola</td></tr>
-						 <tr><td>DIS Disney</td></tr>
-						 <tr><td>DWDP DowDuPont Inc</td></tr>
-						 <tr><td>XOM Exxon Mobil</td></tr>
-						 <tr><td>GS Goldman Sachs</td></tr>
-						 <tr><td>HD Home Depot</td></tr>
-						 <tr><td>IBM IBM</td></tr>
-						 <tr><td>INTC Intel</td></tr>
-						 <tr><td>JNJ Johnson & Johnson</td></tr>
-						 <tr><td>JPM JPMorgan Chase</td></tr>
-						 <tr><td>MCD McDonald's</td></tr>
-						 <tr><td>MRK Merck</td></tr>
-						 <tr><td>MSFT Microsoft</td></tr>
-						 <tr><td>NKE Nike</td></tr>
-						 <tr><td>PFE Pfizer</td></tr>
-						 <tr><td>PG Procter & Gamble</td></tr>
-						 <tr><td>TRV Travelers Companies Inc</td></tr>
-						 <tr><td>UTX United Technologies</td></tr>
-						 <tr><td>UNH UnitedHealth</td></tr>
-						 <tr><td>VZ Verizon</td></tr>
-						 <tr><td>V Visa</td></tr>
-						 <tr><td>WMT Wal-Mart</td></tr>
-						 <tr><td>WBA Walgreen</td></tr>
+						<thead><tr class="table table-sm"><th>Company</th><th>Ticker</th></tr></thead>
+						<tbody>
+						 <tr><td>3M</td><td>MMM</td></tr>
+						 <tr><td>American Express</td><td>AXP </td></tr>
+						 <tr><td>Apple</td><td>AAPL </td></tr>
+						 <tr><td>Boeing</td><td>BA </td></tr>
+						 <tr><td>Caterpillar</td><td>CAT </td></tr>
+						 <tr><td>Chevron</td><td>CVX </td></tr>
+						 <tr><td>Cisco</td><td>CSCO </td></tr>
+						 <tr><td>Coca-Cola</td><td>KO</td></tr>
+						 <tr><td> Disney</td><td>DIS</td></tr>
+						 <tr><td> DowDuPont Inc</td><td>DWDP</td></tr>
+						 <tr><td> Exxon Mobil</td><td>XOM</td></tr>
+						 <tr><td> Goldman Sachs</td><td>GS</td></tr>
+						 <tr><td> Home Depot</td><td>HD</td></tr>
+						 <tr><td> IBM</td><td>IBM</td></tr>
+						 <tr><td> Intel</td><td>INTC</td></tr>
+						 <tr><td> Johnson & Johnson</td><td>JNJ</td></tr>
+						 <tr><td> JPMorgan Chase</td><td>JPM</td></tr>
+						 <tr><td> McDonald's</td><td>MCD</td></tr>
+						 <tr><td> Merck</td><td>MRK</td></tr>
+						 <tr><td> Microsoft</td><td>MSFT</td></tr>
+						 <tr><td> Nike</td><td>NKE</td></tr>
+						 <tr><td> Pfizer</td><td>PFE</td></tr>
+						 <tr><td> Procter & Gamble</td><td>PG</td></tr>
+						 <tr><td> Travelers Companies Inc</td><td>TRV</td></tr>
+						 <tr><td> United Technologies</td><td>UTX</td></tr>
+						 <tr><td> UnitedHealth</td><td>UNH</td></tr>
+						 <tr><td>Verizon</td><td>VZ </td></tr>
+						 <tr><td> Visa</td><td>V</td></tr>
+						 <tr><td> Wal-Mart</td><td>WMT</td></tr>
+						 <tr><td> Walgreen</td><td>WBA</td></tr>
 						</tbody></table>
-			
+						
 				</div>
 				<div class="col-md-8">
-						<div id="map" style="height: 800px;"></div>
-						<script type="text/javascript">
-							// The first parameter are the coordinates of the center of the map
-							// The second parameter is the zoom level
-							// var latt = {{ lat_c }}
-							// var longg = {{ long_c }}
-							var latt = 40
-							var longg = -95
-							var map = L.map('map').setView([latt, longg], 4);
-							// {s}, {z}, {x} and {y} are placeholders for map tiles
-							// {x} and {y} are the x/y of where you are on the map
-							// {z} is the zoom level
-							// {s} is the subdomain of cartodb
-								var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-								attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-							});
-							// Now add the layer onto the map
-							map.addLayer(layer);
-						
-							{% for row in rows %}	
-						
-								var lat = row[5]
-								var long= row[6]
-									L.marker(lat, long).addTo(map)
-									.bindPopup("<strong>Name</strong><br/>Street<br />City, State Zip<br />").openPopup();
-							{% endfor %}
-						</script>
-							<!-- // L.marker([latt, longg]).addTo(map)
-							// .bindPopup("<strong>Name</strong><br/>Street<br />City, State Zip<br />").openPopup();
-							//.bindPopup("<strong>{{ arena_name }}</strong><br/>{{ arena_street}}<br />{{ arena_city }}, {{ arena_state}} {{ arena_zip }}<br />").openPopup(); -->
-							
-							<br/>
-									<h3>Dow Jones</h3><br/>
-									<p>
-											The Dow Jones Industrial Average (DJIA), or simply the Dow (/ˈdaʊ/), is a stock market index that indicates the value of 30 large, publicly owned companies based in the United States, and how they have traded in the stock market during various periods of time.[4] The value of the Dow is not a weighted arithmetic mean[5] and does not represent its component companies' market capitalization, but rather the sum of the price of one share of stock for each component company. The sum is corrected by a factor which changes whenever one of the component stocks has a stock split or stock dividend, so as to generate a consistent value for the index.	
-									</p>
-				</div>
+					<div style= "height: 600px;" id="map"></div>
+					<script src="static/js/config.js"></script>
+					<script src="static/js/logic.js"></script>
+					<p>
+					<br/>
+					<h2>What is the Dow Jones Industrial Average (DJIA)?</h2><hr/>
+The	Dow Jones Industrial Average (DJIA) is an index that tracks 30 large, publicly-owned companies trading on the New York Stock Exchange (NYSE) and the NASDAQ. The DJIA is named after Charles Dow, who created it in 1896, and his business partner, Edward Jones.
+					<br/><br/>
+
+Often referred to as "the Dow," the DJIA is one of the oldest, single most-watched indices in the world and includes companies such as the Walt Disney Company, Exxon Mobil Corporation and Microsoft Corporation. When the TV networks say "the market is up today," they are generally referring to the Dow.
+						</p>
+			</div>
 			</div>
 		</div>
 	</div>
 <div class="col-md-2">
 </div>
-
 	</div>
 </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
   </body>
 </html>
