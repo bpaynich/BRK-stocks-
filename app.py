@@ -96,16 +96,21 @@ def company_detail_query(ticker_name):
     dict["City"] = rows[10]
     dict["State"] = rows[11]
     dict["Zip"] = rows[13]
-    # dict["phone_nbr"] = rows[14]
+    # dict["phone_nbr"] = rows[14]s
     # dict["fax_nbr"] = rows[15]
     dict["Country"] = rows[12]
-    dict["Site"] = rows[16]
-    dict["Industry"] = rows[20]
-    dict["Employees"] = rows[27]
+    dict["Site"] = rows[17]
+    dict["Industry"] = rows[21]
+    dict["Employees"] = rows[28]
+    dict["Market Value"] = rows[29]
+    dict["P/E"] = rows[33]
+    dict["Outstanding Share"] = rows[49]
     dict["Ticker"] = rows[2]
+    # dict["Insider Held"] = rows[79]
+    # dict["Insitutional Holding"] = rows[80]
     dict["Exchange"] = rows[5]
     dict["Currency"] = rows[6]
-    # dict["comp_desc"] = rows[7]
+    dict["comp_desc"] = rows[7]
     sqlite_conn.close()
     return jsonify(dict)
 
