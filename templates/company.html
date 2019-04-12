@@ -62,15 +62,15 @@
 				
 			</p>
 			<div class="row">
-				<div class="col-md-4">
-						<div style= "height: 600px;" id="company_table">
-							<table>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
+				<div class="col-md-5">
+					<div id="company_table" class="panel-body">
+						<table id="data_table" class="table">
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-7">
 						<form action="/info" method="POST">
 							<select class="form-control" name="team">
 								<option value="">select stock</option>
@@ -109,19 +109,20 @@
 						</form>
 						<div style= "height: 600px;" id="map"></div>
 						<div style= "height: 600px;" id="company_desc"></div>
-						<script src="static/js/config.js"></script>
-						<script src="static/js/company.js"></script>
 				</div>
 			</div>
 		</div>
 	</div>
-<div class="col-md-2">
-</div>
+	<div class="col-md-2">
+	</div>
 
 	</div>
 </div>
-
-    <script src="static/js/jquery.min.js"></script>
-    
+	<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/config.js"></script>
+	<script src="static/js/company.js"></script>
   </body>
 </html>

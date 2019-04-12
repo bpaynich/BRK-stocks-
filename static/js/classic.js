@@ -11,6 +11,7 @@ function buildMetadata(ticker) {
     tbody.html("");
     
     d3.json(url).then(function(data) {
+      console.log(data)
       Object.entries(data).forEach(function([key, value]) {
         tbody.append("tr");
          tbody.append("td").text(key + ":  ");
