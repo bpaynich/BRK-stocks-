@@ -1,85 +1,43 @@
 
+const url = "https://stocknewsapi.com/api/v1?tickers=TSLA&items=1&token=psvae8zu1jibyj5u3gfrv1sc7gpxqp7ksed9xd9l";
+   
 
-function buildMetadata(ticker) {
+   d3.json(url, function (error,data) {
 
-  // Build the metadata panel
-   const url = "/api/company_detail/" + ticker;
-    // const url = "/api/company_detail/INTC";
-
-    let tbody = d3.select("#company_info");
-
-    tbody.html("");
-    
-    d3.json(url).then(function(data) {
-      console.log(data)
-      Object.entries(data).forEach(function([key, value]) {
-        tbody.append("tr");
-         tbody.append("td").text(key + ":  ");
-        tbody.append("td").text(value);
-      });
-    });
-}
-
-
-
-
-function buildCharts(ticker) {
-
-    const url = "/api/master12/" + ticker;
-
-    d3.json(url).then(function(data) {
-      console.log(data);
-    // Build a Chart
+    function tabulate(data, columns) {
+      var table = d3.select('body').append('table')
+      var thead = table.append('thead')
+      var	tbody = table.append('tbody');
   
-    var trace1 = {
-        x: data.map(d => d.Date),
-        y: data.map(d => d.Close),
-        type: 'scatter'
-      };
-        
-      var data1 = [trace1];
-
-    Plotly.newPlot("twelve_months_performance", data1);
-
-});
-
-const url2 = "/api/master/" + ticker;
-
-d3.json(url2).then(function(data) {
-
-    // Build a Chart
+      // append the header row
+      thead.append('tr')
+        .selectAll('th')
+        .data(columns).enter()
+        .append('th')
+          .text(function (column) { return column; });
   
-    var trace1 = {
-        x: data.map(d => d.Date),
-        y: data.map(d => d.Volume),
-        type: 'bar'
-      };
-        
-      var data1 = [trace1];
-
-    Plotly.newPlot("stock_volume_chart", data1);
-
-});
-
-const url3 = "/api/master/" + ticker;
-
-d3.json(url3).then(function(data) {
-    
-    // Build a Chart
+      // create a row for each object in the data
+      var rows = tbody.selectAll('tr')
+        .data(data)
+        .enter()
+        .append('tr');
   
-    var trace1 = {
-        x: data.map(d => d.Date),
-        y: data.map(d => d.Close),
-        type: 'scatter'
-      };
-        
-      var data1 = [trace1];
+      // create a cell in each row for each column
+      var cells = rows.selectAll('td')
+        .data(function (row) {
+          return columns.map(function (column) {
+            return {column: column, value: row[column]};
+          });
+        })
+        .enter()
+        .append('td')
+          .text(function (d) { return d.value; });
+  
+      return table;
+    }
+  
+    // render the table(s)
+    tabulate(data, ['date', 'close']); // 2 column table
+  
+  });
 
-    Plotly.newPlot("increase_over_time", data1);
-
-});
-
-}
-stock = 'V'
-buildMetadata(stock);
-buildCharts(stock);
