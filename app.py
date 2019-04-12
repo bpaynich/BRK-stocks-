@@ -96,7 +96,7 @@ def company_detail_query(ticker_name):
     dict["City"] = rows[10]
     dict["State"] = rows[11]
     dict["Zip"] = rows[13]
-    # dict["phone_nbr"] = rows[14]s
+    # dict["phone_nbr"] = rows[14]
     # dict["fax_nbr"] = rows[15]
     dict["Country"] = rows[12]
     dict["Site"] = rows[17]
@@ -110,7 +110,7 @@ def company_detail_query(ticker_name):
     # dict["Insitutional Holding"] = rows[80]
     dict["Exchange"] = rows[5]
     dict["Currency"] = rows[6]
-    dict["comp_desc"] = rows[7]
+    # dict["comp_desc"] = rows[7]
     sqlite_conn.close()
     return jsonify(dict)
 
@@ -139,12 +139,34 @@ def master_query(ticker_name_master):
         dates["High"] = rows[x][4]
         dates["Low"] = rows[x][5]
         dates["Volume"] = rows[x][6]
-        #print(x)
-        #print(dates)
-        #print("\n")
         df.append(dates.copy())
     sqlite_conn.close()
     return jsonify(df)
+
+
+@app.route("/api/master12/<ticker_name_master12>")
+def master12_query(ticker_name_master12):
+    sqlite_conn = sqlite3.connect('db/stock.sqlite')
+    cursor = sqlite_conn.cursor()
+    rows = cursor.execute("SELECT * FROM master WHERE Date like '2018%' AND Name = ?", (ticker_name_master12,)).fetchall()
+    dates = {}
+    df = []
+    num_rows = len(rows)
+    for x in range(num_rows):
+        dates["Index"] = rows[x][0]
+        dates["Ticker"] = rows[x][7]
+        dates["Date"] = rows[x][1]
+        dates["Open"] = rows[x][2]
+        dates["Close"] = rows[x][3]
+        dates["High"] = rows[x][4]
+        dates["Low"] = rows[x][5]
+        dates["Volume"] = rows[x][6]
+        df.append(dates.copy())
+    sqlite_conn.close()
+    return jsonify(df)
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
