@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Classic Indicators</title>
+	
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+
+  </head>
+  <body style="background-color: darkblue;">
+		<div class="container-fluid">
+			<div class="row">
+					<div class="col-md-2">
+					</div>
+					<div class="col-md-8" style="background-color: white;">
+			<br/>
+				<div class="col-md-12">
+						<ul class="nav navbar navbar-dark bg-dark">
+								<li class="nav-item">
+									<a class="nav-link active" href="/">Dow Stocks</a>
+								</li>
+								<li class="nav-item">
+										<a class="nav-link " href="/company">Company info </a>
+								</li>				
+								<li class="nav-item">
+										<a class="nav-link " href="/classic">Classic </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link " href="/modern">Modern</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link " href="/news">News</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link " href="/API">API</a>
+								</li>	
+								<!-- <li>
+									<a class="nav-link active dropdown-menu-right" href="/pdf">Write PDF</a>
+								</li> -->
+							</ul>
+					<br/>
+					<h3>
+						News Feeds
+					</h3>
+					<p>
+						News for current Dow Jones Companies
+					</p>
+					<div class="row">
+						<div class="col-md-2">
+					</div>
+						<div class="col-md-8">
+							<br/><br/><br/><br/><br/><br/>
+							NEWS FEEDS HERE
+							<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+						</div>
+				</div>
+				<div class="col-md-2">
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  		<script src="{{ url_for('static', filename='js/news.js') }}"></script>
+  </body>
+</html>

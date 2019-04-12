@@ -50,71 +50,38 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link " href="/modern">Modern</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link " href="/news">News</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link " href="/API">API</a>
-					</li>	
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/news">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/API">API</a>
+                    </li>	
 					<!-- <li>
 						<a class="nav-link active dropdown-menu-right" href="/pdf">Write PDF</a>
 					</li> -->
 				</ul>
 
 			<br/>
-			<h3>Dow Stocks</h3>
+			<h3>API Information</h3>
 			<p>
-				
+			Below you will find the links to the API routines	
 			</p>
 			<div class="row">
-				<div class="col-md-5">
-					<div id="company_table" class="panel-body">
+				<div class="col-md-12">
+					<div id="API_TABLE" class="panel-body">
 						<table id="data_table" class="table">
 							<tbody>
+                                <tr><td>Company Details</td><td>http://localhost:5000/api/company_detail/ticker</td></tr>
+                                <tr><td>Company Names</td><td>http://localhost:5000/api/names</td></tr>
+                                <tr><td>Company Addresses</td><td>http://localhost:5000/api/addresses</td></tr>
+                                <tr><td>Historical Stock information</td><td>http://localhost:5000/api/company_detail/ticker</td></tr>
+                                <tr><td>Historical Stock Quarter Close </td><td>http://localhost:5000/api/company_detail/ticker</td></tr>
+                                
 							</tbody>
-						</table>
+                        </table>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 					</div>
-				</div>
-				<div class="col-md-7">
-						<form action="/info" method="POST">
-							<select class="form-control" name="team">
-								<option value="">select stock</option>
-								<option value="MMM"> 3M</option>
-								<option value="AXP"> American Express</option>
-								<option value="AAPL"> Apple</option>
-								<option value="BA"> Boeing</option>
-								<option value="CAT"> Caterpillar</option>
-								<option value="CVX"> Chevron</option>
-								<option value="CSCO"> Cisco</option>
-								<option value="KO"> Coca-Cola</option>
-								<option value="DIS"> Disney</option>
-								<option value="DWDP"> DowDuPont Inc</option>
-								<option value="XOM"> Exxon Mobil</option>
-								<option value="GS"> Goldman Sachs</option>
-								<option value="HD"> Home Depot</option>
-								<option value="IBM"> IBM</option>
-								<option value="INTC"> Intel</option>
-								<option value="JNJ"> Johnson & Johnson</option>
-								<option value="JPM"> JPMorgan Chase</option>
-								<option value="MCD"> McDonald's</option>
-								<option value="MRK"> Merck</option>
-								<option value="MSFT"> Microsoft</option>
-								<option value="NKE"> Nike</option>
-								<option value="PFE"> Pfizer</option>
-								<option value="PG"> Procter & Gamble</option>
-								<option value="TRV"> Travelers Companies Inc</option>
-								<option value="UTX"> United Technologies</option>
-								<option value="UNH"> UnitedHealth</option>
-								<option value="VZ"> Verizon</option>
-								<option value="V"> Visa</option>
-								<option value="WMT"> Wal-Mart</option>
-								<option value="WBA"> Walgreen</option>
-							</select>
-							<br>
-						</form>
-						<div style= "height: 600px;" id="map"></div>
-						<div style= "height: 600px;" id="company_desc"></div>
 				</div>
 			</div>
 		</div>

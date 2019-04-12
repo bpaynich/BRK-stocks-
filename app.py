@@ -48,18 +48,26 @@ def company_query():
 def modern_query():
     return render_template("modern.html")
 
-@app.route("/pdf")
-def pdf_query():
-    return render_template("writepdf.html")
+@app.route("/news")
+def news_query():
+    return render_template("news.html")
 
-@app.route("/api/locations")
-def locations_query():
-    sqlite_conn = sqlite3.connect('db/stock.sqlite')
-    cursor = sqlite_conn.cursor()
-    rows = cursor.execute('SELECT latitude, longitude FROM address_api_table').fetchall()
-    sqlite_conn.close()
-    return jsonify([member[0] for member in cursor.description], rows)
-    #return jsonify(rows)
+@app.route("/API")
+def api_query():
+    return render_template("api.html")
+
+# @app.route("/pdf")
+# def pdf_query():
+#     return render_template("writepdf.html")
+
+# @app.route("/api/locations")
+# def locations_query():
+#     sqlite_conn = sqlite3.connect('db/stock.sqlite')
+#     cursor = sqlite_conn.cursor()
+#     rows = cursor.execute('SELECT latitude, longitude FROM address_api_table').fetchall()
+#     sqlite_conn.close()
+#     return jsonify([member[0] for member in cursor.description], rows)
+#     #return jsonify(rows)
 
 @app.route("/api/names")
 def names_query():
@@ -81,8 +89,20 @@ def address_api_query():
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT a.Company, a.Address, a.City, a.State, a.latitude, a.longitude, b.comp_name_2 FROM address_api_table as a INNER JOIN company_details as b ON a.Company = b.comp_name').fetchall()
+    addresses = {}
+    addresses_df = []
+    num_rows = len(rows)
+    for x in range(num_rows):
+        addresses["Company_name"] = rows[x][0]
+        addresses["Address"] = rows[x][1]
+        addresses["City"] = rows[x][2]
+        addresses["State"] = rows[x][3]
+        addresses["Latitude"] = rows[x][4]
+        addresses["Longitude"] = rows[x][5]
+        addresses["Company"] = rows[x][6]
+        addresses_df.append(addresses.copy())
     sqlite_conn.close()
-    return jsonify(rows)
+    return jsonify(addresses_df)
 
 @app.route("/api/companies_details")
 def companies_details_query():

@@ -19,21 +19,21 @@ var url = "/api/addresses";
 
 // Grab the data with d3
 
-d3.json(url, function(response) {
-  console.log(response);
+d3.json(url, function(data) {
+  
   // Create a new marker cluster group
   var markers = L.markerClusterGroup();
 
   // Loop through data
   for (var i = 0; i < response.length; i++) {
-
+    
     // Set the data location property to a variable
-    var lat = response[i][4];
-    var lng = response[i][5];
-    var name = response[i][6];
-    var city = response[i][2];
-    var state = response[i][3];
-    var address = response[i][1];
+    var lat = data.map(d => d.Latitude);
+    var lng = data.map(d => d.Longitude);
+    var name = data.map(d => d.Company);
+    var city = data.map(d => d.City);
+    var state = data.map(d => d.State);
+    var address = data.map(d => d.Address);
     
     // Check for location property
     if (location) {
