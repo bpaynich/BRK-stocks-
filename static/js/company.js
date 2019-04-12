@@ -1,3 +1,13 @@
+var e = d3.select("#stock_menu");
+
+function handleChange(event) {
+  var pick = document.getElementById("stock_menu");
+  var stock = pick.options[pick.selectedIndex].value;
+  buildMetadata(stock);
+  buildCharts(stock);
+}
+
+e.on("change", handleChange);
 
 
 function buildMetadata(ticker) {
@@ -19,8 +29,6 @@ function buildMetadata(ticker) {
       });
     });
 }
-
-buildMetadata('MSFT');
 
 function buildCharts(sample) {
 

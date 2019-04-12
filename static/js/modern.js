@@ -1,4 +1,15 @@
 
+var e = d3.select("#stock_menu");
+
+function handleChange(event) {
+  var pick = document.getElementById("stock_menu");
+  var stock = pick.options[pick.selectedIndex].value;
+  buildMetadata(stock);
+  buildCharts(stock);
+}
+
+e.on("change", handleChange);
+
 
 function buildMetadata(ticker) {
 
@@ -80,6 +91,3 @@ d3.json(url3).then(function(data) {
 });
 
 }
-stock = 'V'
-buildMetadata(stock);
-buildCharts(stock);
