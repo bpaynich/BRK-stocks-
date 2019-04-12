@@ -66,8 +66,15 @@ def names_query():
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT comp_name_2, ticker FROM company_details').fetchall()
+    names = {}
+    names_df = []
+    num_rows = len(rows)
+    for x in range(num_rows):
+        names["Company"] = rows[x][0]
+        names["Ticker"] = rows[x][1]
+        names_df.append(names.copy())
     sqlite_conn.close()
-    return jsonify(rows)
+    return jsonify(names_df)
 
 @app.route("/api/addresses")
 def address_api_query():
@@ -119,8 +126,21 @@ def stock_quarter_close_query():
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT * FROM stock_quarter_close').fetchall()
+    quarter = {}
+    quarter_df = []
+    num_rows = len(rows)
+    for x in range(num_rows):
+        quarter["Index"] = rows[x][0]
+        quarter["Ticker"] = rows[x][7]
+        quarter["Date"] = rows[x][1]
+        quarter["Open"] = rows[x][2]
+        quarter["Close"] = rows[x][3]
+        quarter["High"] = rows[x][4]
+        quarter["Low"] = rows[x][5]
+        quarter["Volume"] = rows[x][6]
+        quarter_df.append(quarter.copy())
     sqlite_conn.close()
-    return jsonify(rows)
+    return jsonify(quarter_df)
 
 @app.route("/api/master/<ticker_name_master>")
 def master_query(ticker_name_master):
@@ -143,7 +163,6 @@ def master_query(ticker_name_master):
     sqlite_conn.close()
     return jsonify(df)
 
-
 @app.route("/api/master12/<ticker_name_master12>")
 def master12_query(ticker_name_master12):
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
@@ -164,9 +183,6 @@ def master12_query(ticker_name_master12):
         df.append(dates.copy())
     sqlite_conn.close()
     return jsonify(df)
-
-
-
 
 if __name__ == "__main__":
     app.run(debug=True)

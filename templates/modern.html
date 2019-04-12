@@ -5,103 +5,122 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dow Stocks - Modern</title>
-
+	<title>Classic Indicators</title>
+	
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
 
   </head>
   <body>
-
-    <div class="container-fluid">
-	<div class="row">
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-8">
-		<div class="col-md-12">
-			<br/>
-				<ul class="nav">
-						<li class="nav-item">
-							<a class="nav-link active" href="/">Dow Stocks</a>
-						</li>
-						<li class="nav-item">
-								<a class="nav-link " href="/company">Company info </a>
-						</li>				
-						<li class="nav-item">
-								<a class="nav-link " href="/classic">Classic </a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link " href="/modern">Modern</a>
-						</li>
-						<li>
-							<a class="nav-link active dropdown-menu-right" href="/pdf">Write PDF</a>
-						</li>
-					</ul>
-					<br/>
-			<h3>
-				Modern Indicators
-			</h3>
-			<p>
-				Here are some modern interpretations of stock data.
-			</p>
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-4">
+					<div class="col-md-2">
+					</div>
+					<div class="col-md-8">
+			<br/>
+				<div class="col-md-12">
+						<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link active" href="/">Dow Stocks</a>
+								</li>
+								<li class="nav-item">
+										<a class="nav-link " href="/company">Company info </a>
+								</li>				
+								<li class="nav-item">
+										<a class="nav-link " href="/classic">Classic </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link " href="/modern">Modern</a>
+								</li>
+								<li>
+									<a class="nav-link active dropdown-menu-right" href="/pdf">Write PDF</a>
+								</li>
+							</ul>
 					<br/>
-					<address>
-						 <strong>Twitter, Inc.</strong><br> 795 Folsom Ave, Suite 600<br> San Francisco, CA 94107<br> <abbr title="Phone">P:</abbr> (123) 456-7890
-					</address>
+					<h3>
+						Modern Indicators
+					</h3>
 					<p>
-						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
+						Here are some additional indicators for stocks.
 					</p>
-				</div>
-				<div class="col-md-8">
-						<form action="/info" method="POST">
-							<select class="form-control" name="team">
+					<div class="row">
+						<div class="col-md-5">
+								<div id="company_info" class="panel-body">
+									<table id="data_table" class="table table-sm">
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+						</div>
+						<div class="col-md-7">
+								<form action="/info" method="POST">
+									<select class="form-control" name="team">
 										<option value="">select stock</option>
-										 <option value="MMM"> 3M</option>
-										 <option value="AXP"> American Express</option>
-										 <option value="AAPL"> Apple</option>
-										 <option value="BA"> Boeing</option>
-										 <option value="CAT"> Caterpillar</option>
-										 <option value="CVX"> Chevron</option>
-										 <option value="CSCO"> Cisco</option>
-										 <option value="KO"> Coca-Cola</option>
-										 <option value="DIS"> Disney</option>
-										 <option value="DWDP"> DowDuPont Inc</option>
-										 <option value="XOM"> Exxon Mobil</option>
-										 <option value="GS"> Goldman Sachs</option>
-										 <option value="HD"> Home Depot</option>
-										 <option value="IBM"> IBM</option>
-										 <option value="INTC"> Intel</option>
-										 <option value="JNJ"> Johnson & Johnson</option>
-										 <option value="JPM"> JPMorgan Chase</option>
-										 <option value="MCD"> McDonald's</option>
-										 <option value="MRK"> Merck</option>
-										 <option value="MSFT"> Microsoft</option>
-										 <option value="NKE"> Nike</option>
-										 <option value="PFE"> Pfizer</option>
-										 <option value="PG"> Procter & Gamble</option>
-										 <option value="TRV"> Travelers Companies Inc</option>
-										 <option value="UTX"> United Technologies</option>
-										 <option value="UNH"> UnitedHealth</option>
-										 <option value="VZ"> Verizon</option>
-										 <option value="V"> Visa</option>
-										 <option value="WMT"> Wal-Mart</option>
-										 <option value="WBA"> Walgreen</option>
-							</select>
-							<br>
-						</form>
-					<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg">
+										<option value="MMM"> 3M</option>
+										<option value="AXP"> American Express</option>
+										<option value="AAPL"> Apple</option>
+										<option value="BA"> Boeing</option>
+										<option value="CAT"> Caterpillar</option>
+										<option value="CVX"> Chevron</option>
+										<option value="CSCO"> Cisco</option>
+										<option value="KO"> Coca-Cola</option>
+										<option value="DIS"> Disney</option>
+										<option value="DWDP"> DowDuPont Inc</option>
+										<option value="XOM"> Exxon Mobil</option>
+										<option value="GS"> Goldman Sachs</option>
+										<option value="HD"> Home Depot</option>
+										<option value="IBM"> IBM</option>
+										<option value="INTC"> Intel</option>
+										<option value="JNJ"> Johnson & Johnson</option>
+										<option value="JPM"> JPMorgan Chase</option>
+										<option value="MCD"> McDonald's</option>
+										<option value="MRK"> Merck</option>
+										<option value="MSFT"> Microsoft</option>
+										<option value="NKE"> Nike</option>
+										<option value="PFE"> Pfizer</option>
+										<option value="PG"> Procter & Gamble</option>
+										<option value="TRV"> Travelers Companies Inc</option>
+										<option value="UTX"> United Technologies</option>
+										<option value="UNH"> UnitedHealth</option>
+										<option value="VZ"> Verizon</option>
+										<option value="V"> Visa</option>
+										<option value="WMT"> Wal-Mart</option>
+										<option value="WBA"> Walgreen</option>
+									</select>
+									<br>
+								</form>
+							<strong>
+									Last 12 months performance
+							</strong>
+							<div id="twelve_months_performance" style="height: 400px;"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-6">
+									<strong>
+										Stock Volume Over Time
+									</strong>
+									<div id="stock_volume_chart" style="height: 400px; width: 400px;"></div>
+								</div>
+								<div class="col-md-6">
+									<stong>
+										Percentage increase Over Time
+									</strong>
+									<div id="increase_over_time" style="height: 400px; width: 400px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-md-2"></div>
-	</div>
-</div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/scripts.js"></script>
+		<script src="https://cdn.plot.ly/plotly-1.31.2.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  		<script src="{{ url_for('static', filename='js/modern.js') }}"></script>
   </body>
 </html>

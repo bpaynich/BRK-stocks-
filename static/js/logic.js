@@ -44,9 +44,20 @@ d3.json(url, function(response) {
     }
 
   }
-
   // Add our marker cluster layer to the map
   map.addLayer(markers);
-
 });
 
+  // Build the metadata panel
+   const url4 = "/api/names/";
+
+    let tbody = d3.select("#dow_list");
+     tbody.html("");
+    d3.json(url4).then(function(data) {
+      console.log(data)
+      Object.entries(data).forEach(function([key, value]) {
+        tbody.append("tr");
+         tbody.append("td").text(key + ":  ");
+        tbody.append("td").text(value);
+      });
+    });
