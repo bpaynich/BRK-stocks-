@@ -11,3 +11,11 @@ body {
     height: 100%;
   }
   
+  .body {
+    background-color: darkblue;
+  }
+
+  #nav-link active{
+    color: orange;
+  }
+  
