@@ -4,7 +4,6 @@ function handleChange(event) {
   var pick = document.getElementById("stock_menu");
   var stock = pick.options[pick.selectedIndex].value;
   buildMetadata(stock);
-  buildCharts(stock);
 }
 
 e.on("change", handleChange);
@@ -31,83 +30,51 @@ function buildMetadata(ticker) {
     });
 }
 
-function buildCharts(sample) {
-
-    const url = "/samples/" + sample;
-
-    d3.json(url).then(function(data) {
-      
-    // Build a Pie Chart
-  
-    var trace1 = {
-      values: data.sample_values.slice(0, 10),
-      labels: data.otu_ids.slice(0, 10),
-      //hoverinfo: data.otu_labels.slice(0, 10)
-      type: 'pie'
-    };
-
-    // data
-    var data1 = [trace1];
-
-    
-    var layout1 = {
-      title: 'Belly Button Bacteria Types',
-      showlegend: true,
-      height: 400,
-      width: 400
-    };
-
-    Plotly.newPlot("pie", data1, layout1);
-
-// Bubble Chart using the sample data
-
-    var trace2 = {
-      x: data.otu_ids,
-      y: data.sample_values,
-      mode: 'markers',
-      marker: {
-        size: data.sample_values,
-        color: data.otu_ids,
-        text: data.otu_labels
-      }
-    };
-    
-    var data1 = [trace2];
-    
-    var layout = {
-      title: 'Belly Button Bacteria',
-      showlegend: true,
-      height: 600,
-      width: 1200
-    };
-    
-    Plotly.newPlot('bubble', data1, layout);
+// Creating map object
+var map = L.map("map", {
+  center: [39.8283,-98.5795],
+  zoom: 4
 });
 
-}
 
-function init() {
-  // Grab a reference to the dropdown select element
-  var selector = d3.select("#selDataset");
+// Adding tile layer to the map
+L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+  attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  maxZoom: 18,
+  id: "mapbox.streets",
+  accessToken: API_KEY
+}).addTo(map);
 
-  // Use the list of sample names to populate the select options
-  d3.json("/names").then((sampleNames) => {
-    sampleNames.forEach((sample) => {
-      selector
-        .append("option")
-        .text(sample)
-        .property("value", sample);
-    });
+// Store API query variables
+var url = "/api/addresses";
 
-    // Use the first sample from the list to build the initial plots
-    const firstSample = sampleNames[0];
-    buildCharts(firstSample);
-    buildMetadata(firstSample);
-  });
-}
+// Grab the data with d3
 
-function optionChanged(newSample) {
-  // Fetch new data each time a new sample is selected
-  buildCharts(newSample);
-  buildMetadata(newSample);
-}
+d3.json(url, function(data) {
+  
+  // Create a new marker cluster group
+  var markers = L.markerClusterGroup();
+
+  // Loop through data
+  for (var i = 0; i < response.length; i++) {
+    
+    // Set the data location property to a variable
+    var lat = data.map(d => d.Latitude);
+    var lng = data.map(d => d.Longitude);
+    var name = data.map(d => d.Company);
+    var city = data.map(d => d.City);
+    var state = data.map(d => d.State);
+    var address = data.map(d => d.Address);
+    
+    // Check for location property
+    if (location) {
+      // Add a new marker to the cluster group and bind a pop-up
+      markers.addLayer(L.marker([lat,lng])
+        .bindPopup(name + '<br/>' + address + '<br/>' + city + ", " + state)
+        );
+    }
+
+  }
+  // Add our marker cluster layer to the map
+  map.addLayer(markers);
+});
