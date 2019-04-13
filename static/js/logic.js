@@ -19,44 +19,33 @@ var url = "/api/addresses";
 
 // Grab the data with d3
 
-d3.json(url, function(data) {
-  
+d3.json(url, function(response) {
+  // console.log(response);
   // Create a new marker cluster group
   var markers = L.markerClusterGroup();
-
+  
   // Loop through data
   for (var i = 0; i < response.length; i++) {
-    
+    var location = response[i].location;
+
     // Set the data location property to a variable
-    var lat = data.map(d => d.Latitude);
-    var lng = data.map(d => d.Longitude);
-    var name = data.map(d => d.Company);
-    var city = data.map(d => d.City);
-    var state = data.map(d => d.State);
-    var address = data.map(d => d.Address);
-    
+    var lat = response.map(d => d.Latitude)[i];  
+    var lng = response.map(d => d.Longitude)[i];
+    var name = response.map(d => d.Company)[i];
+    var city = response.map(d => d.City)[i];
+    var state = response.map(d => d.State)[i];
+    var address = response.map(d => d.Address)[i];
+    console.log(lat,lng,name,city,state,address);
     // Check for location property
-    if (location) {
+   
       // Add a new marker to the cluster group and bind a pop-up
-      markers.addLayer(L.marker([lat,lng])
+      map.addLayer(L.marker([lat,lng])
         .bindPopup(name + '<br/>' + address + '<br/>' + city + ", " + state)
         );
-    }
+    
 
   }
-  // Add our marker cluster layer to the map
-  map.addLayer(markers);
+  
 });
 
-  // // Build the metadata panel
-  //  const url4 = "/api/names/";
-  //   let tbody = d3.select("#dow_list");
-  //    tbody.html("");
-  //   d3.json(url4).then(function(data) {
-  //     console.log(data)
-  //     Object.entries(data).forEach(function([key, value]) {
-  //       tbody.append("tr");
-  //        tbody.append("td").text(key + ":  ");
-  //       tbody.append("td").text(value);
-  //     });
-  //   });
+ 
