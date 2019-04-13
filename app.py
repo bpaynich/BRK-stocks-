@@ -50,6 +50,10 @@ def company_query():
 def modern_query():
     return render_template("modern.html")
 
+@app.route("/modern30")
+def modern30_query():
+    return render_template("modern2.html")
+
 @app.route("/news")
 def news_query():
     # # Init
