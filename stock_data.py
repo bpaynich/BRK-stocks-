@@ -1,4 +1,4 @@
-def stock_changes_query():
+def stock_changes_query(stock_results_df):
 
     #%matplotlib inline
     import matplotlib.pyplot as plt
