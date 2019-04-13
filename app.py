@@ -8,7 +8,7 @@ import json
 import warnings
 import gmaps.geojson_geometries
 import functions
-from newsapi import NewsApiClient    
+#from newsapi import NewsApiClient    
 
 from flask import Flask, jsonify, render_template, request
 
