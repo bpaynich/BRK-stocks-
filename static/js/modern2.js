@@ -1,17 +1,15 @@
 
-    const url = "/api/companies_details/";
+     const url = "/api/companies_details";
 
-    d3.json(url).then(function(data) {
-      console.log(data);
-    // Build a Chart
-  
+     d3.json(url).then(function(data) {
+    
+      // Build a Chart
     var trace1 = {
-      x: [1, 2, 3, 4, 5],
-      y: [1, 6, 3, 6, 1],
-      mode: 'markers+text',
-      type: 'scatter',
-      name: 'Team A',
-      text: ['A-1', 'A-2', 'A-3', 'A-4', 'A-5'],
+      x: data.map(d=>d.market_val * 1000),
+      y: data.map(d=>d.emp_cnt),
+      mode: 'markers',
+      type: 'bubble',
+      text: data.map(d=>d.comp_name_2),
       textposition: 'top center',
       textfont: {
         family:  'Raleway, sans-serif'
@@ -19,29 +17,9 @@
       marker: { size: 12 }
     };
     
-    var trace2 = {
-      x: [1.5, 2.5, 3.5, 4.5, 5.5],
-      y: [4, 1, 7, 1, 4],
-      mode: 'markers+text',
-      type: 'scatter',
-      name: 'Team B',
-      text: ['B-a', 'B-b', 'B-c', 'B-d', 'B-e'],
-      textfont : {
-        family:'Times New Roman'
-      },
-      textposition: 'bottom center',
-      marker: { size: 12 }
-    };
-    
-    var data = [ trace1, trace2 ];
+    var data = [ trace1 ];
     
     var layout = {
-      xaxis: {
-        range: [ 0.75, 5.25 ]
-      },
-      yaxis: {
-        range: [0, 8]
-      },
       legend: {
         y: 0.5,
         yref: 'paper',
@@ -51,130 +29,152 @@
           color: 'grey',
         }
       },
-      title:'Data Labels on the Plot'
+      title:'Market Cap Vs. Employee Count',
+      xaxis: {
+        title: {
+          text: 'Market Cap',
+          font: {
+            family: 'Arial',
+            size: 18,
+            color: '#ffffff'
+          }
+        },
+      },
+      yaxis: {
+        title: {
+          text: 'Employee Count',
+          font: {
+            family: 'Arial',
+            size: 18,
+            color: '#ffffff'
+          }
+        }
+      }
+      
     };
     
     Plotly.newPlot('scatter_plot1', data, layout);
 
 });
 
-const url = "/api/companies_details/";
+
+
+
+// const url = "/api/companies_details";
 
 d3.json(url).then(function(data) {
-  console.log(data);
-// Build a Chart
 
+ // Build a Chart
 var trace1 = {
-  x: [1, 2, 3, 4, 5],
-  y: [1, 6, 3, 6, 1],
-  mode: 'markers+text',
-  type: 'scatter',
-  name: 'Team A',
-  text: ['A-1', 'A-2', 'A-3', 'A-4', 'A-5'],
-  textposition: 'top center',
-  textfont: {
-    family:  'Raleway, sans-serif'
-  },
-  marker: { size: 12 }
+ x: data.map(d=>d.price_per_sales),
+ y: data.map(d=>d.price_cash),
+ mode: 'markers',
+ type: 'scatter',
+ text: data.map(d=>d.comp_name_2),
+ textposition: 'top center',
+ textfont: {
+   family:  'Raleway, sans-serif'
+ },
+ marker: { size: 12 }
 };
 
-var trace2 = {
-  x: [1.5, 2.5, 3.5, 4.5, 5.5],
-  y: [4, 1, 7, 1, 4],
-  mode: 'markers+text',
-  type: 'scatter',
-  name: 'Team B',
-  text: ['B-a', 'B-b', 'B-c', 'B-d', 'B-e'],
-  textfont : {
-    family:'Times New Roman'
-  },
-  textposition: 'bottom center',
-  marker: { size: 12 }
+var data = [ trace1 ];
+
+var layout2 = {
+ legend: {
+   y: 0.5,
+   yref: 'paper',
+   font: {
+     family: 'Arial, sans-serif',
+     size: 20,
+     color: 'grey',
+   }
+ },
+ title:'Sales vs. Cash Ratio',
+ xaxis: {
+   title: {
+     text: 'Sales',
+     font: {
+       family: 'Arial',
+       size: 18,
+       color: '#ffffff'
+     }
+   },
+ },
+ yaxis: {
+   title: {
+     text: 'Cash',
+     font: {
+       family: 'Arial',
+       size: 18,
+       color: '#ffffff'
+     }
+   }
+ }
+ 
 };
 
-var data = [ trace1, trace2 ];
-
-var layout = {
-  xaxis: {
-    range: [ 0.75, 5.25 ]
-  },
-  yaxis: {
-    range: [0, 8]
-  },
-  legend: {
-    y: 0.5,
-    yref: 'paper',
-    font: {
-      family: 'Arial, sans-serif',
-      size: 20,
-      color: 'grey',
-    }
-  },
-  title:'Data Labels on the Plot'
-};
-
-Plotly.newPlot('scatter_plot2', data, layout);
+Plotly.newPlot('scatter_plot2', data, layout2);
 
 });
 
 
-const url = "/api/companies_details/";
+
+
+// const url = "/api/companies_details";
 
 d3.json(url).then(function(data) {
-  console.log(data);
-// Build a Chart
 
+ // Build a Chart
 var trace1 = {
-  x: [1, 2, 3, 4, 5],
-  y: [1, 6, 3, 6, 1],
-  mode: 'markers+text',
-  type: 'scatter',
-  name: 'Team A',
-  text: ['A-1', 'A-2', 'A-3', 'A-4', 'A-5'],
-  textposition: 'top center',
-  textfont: {
-    family:  'Raleway, sans-serif'
-  },
-  marker: { size: 12 }
+ x: data.map(d=>d.market_val * 1000),
+ y: data.map(d=>d.tot_revenue_f0),
+ mode: 'markers',
+ type: 'bubble',
+ text: data.map(d=>d.comp_name_2),
+ textposition: 'top center',
+ textfont: {
+   family:  'Raleway, sans-serif'
+ },
+ marker: { size: 12 }
 };
 
-var trace2 = {
-  x: [1.5, 2.5, 3.5, 4.5, 5.5],
-  y: [4, 1, 7, 1, 4],
-  mode: 'markers+text',
-  type: 'scatter',
-  name: 'Team B',
-  text: ['B-a', 'B-b', 'B-c', 'B-d', 'B-e'],
-  textfont : {
-    family:'Times New Roman'
-  },
-  textposition: 'bottom center',
-  marker: { size: 12 }
-};
-
-var data = [ trace1, trace2 ];
+var data = [ trace1 ];
 
 var layout = {
-  xaxis: {
-    range: [ 0.75, 5.25 ]
-  },
-  yaxis: {
-    range: [0, 8]
-  },
-  legend: {
-    y: 0.5,
-    yref: 'paper',
-    font: {
-      family: 'Arial, sans-serif',
-      size: 20,
-      color: 'grey',
-    }
-  },
-  title:'Data Labels on the Plot'
+ legend: {
+   y: 0.5,
+   yref: 'paper',
+   font: {
+     family: 'Arial, sans-serif',
+     size: 20,
+     color: 'grey',
+   }
+ },
+ title:'Market Cap Vs. Total Revenue',
+ xaxis: {
+   title: {
+     text: 'Market Cap',
+     font: {
+       family: 'Arial',
+       size: 18,
+       color: '#ffffff'
+     }
+   },
+ },
+ yaxis: {
+   title: {
+     text: 'Total Revenue',
+     font: {
+       family: 'Arial',
+       size: 18,
+       color: '#ffffff'
+     }
+   }
+ }
+ 
 };
 
 Plotly.newPlot('scatter_plot3', data, layout);
 
 });
-
-
