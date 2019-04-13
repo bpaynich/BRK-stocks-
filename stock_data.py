@@ -118,3 +118,4 @@ def stock_changes_query(stock_results_df):
                                                         stock_results_df.columns[6]: "Date of Highest Average Change", \
                                                         stock_results_df.columns[7]: "Lowest Average Change for a Specific Date", \
                                                         stock_results_df.columns[8]: "Date of Lowest Average Change"})
+return(stock_results_df)
