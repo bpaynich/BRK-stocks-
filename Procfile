@@ -1,1 +1,1 @@
-web: gunicorn stock_heroes_env.app:app
+web: gunicorn app:app
