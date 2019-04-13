@@ -12,10 +12,10 @@ body {
   }
   
   .body {
-    background-color: darkblue;
+    background-color: #0F0082;
   }
 
   #nav-link active{
-    color: orange;
+    color: #FF5C00;
   }
   

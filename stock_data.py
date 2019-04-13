@@ -1,4 +1,4 @@
-%matplotlib inline
+#%matplotlib inline
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -8,7 +8,7 @@ import pymysql
 pymysql.install_as_MySQLdb()
 
 # Connect to the database and create a dataframe
-conn = sqlite3.connect("../db/stock.sqlite")
+conn = sqlite3.connect("db/stock.sqlite")
 stock_df = pd.read_sql_query("SELECT Name, Date, Open, Close FROM master", conn)
 
 split_date = stock_df["Date"].str.split("-", n = 1, expand = True)
