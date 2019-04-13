@@ -102,9 +102,5 @@ creat_pdf.on('click', function() {
     15,
     15
     );
-  doc.save();
+  doc.save("your_stock");
   });
-
-//stock = 'V'
-buildMetadata(stock);
-buildCharts(stock);
