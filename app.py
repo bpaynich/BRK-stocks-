@@ -8,6 +8,7 @@ import json
 import warnings
 import gmaps.geojson_geometries
 import functions
+import stock_data
 #from newsapi import NewsApiClient    
 
 from flask import Flask, jsonify, render_template, request
@@ -63,22 +64,126 @@ def news_query():
     # sources = newsapi.get_sources()
     return render_template("news.html")
 
+
+@app.route("/api/stock_changes")
+def stock_changes_query():
+
+    # Connect to the database and create a dataframe
+    conn = sqlite3.connect("db/stock.sqlite")
+    stock_df = pd.read_sql_query("SELECT Name, Date, Open, Close FROM master", conn)
+
+    split_date = stock_df["Date"].str.split("-", n = 1, expand = True)
+    open = stock_df["Open"]
+    close = stock_df["Close"]
+    percent_change = ((close - open)/open)*100
+
+    # Create a dataframe with additional columns
+    ticker_df = pd.DataFrame({
+        "Name": stock_df["Name"],
+        "Date": stock_df["Date"],
+        "Year": split_date[0],
+        "Month-Day": split_date[1],
+        "Open": stock_df["Open"],
+        "Close": stock_df["Close"],
+        "Percent Change": percent_change
+        })
+
+    # Create a list of ticker names
+    unique_tickers = stock_df["Name"].unique()
+
+    # Create empty lists
+    name = []
+    max_overall = []
+    max_overall_date = []
+    min_overall = []
+    min_overall_date = []
+    max_avg = []
+    max_avg_date = []
+    min_avg = []
+    min_avg_date = []
+
+    # For loop over the ticker names
+    for x in unique_tickers:
+        
+        ticker_data = ticker_df.loc[ticker_df['Name'] == x]
+        
+        name.append(ticker_data['Name'].unique()[0])
+        
+        # Find the maximum percent change for all dates
+        max_change = ticker_data["Percent Change"].max()
+
+        max_overall.append(max_change)
+        
+        # Find the minimum percent change for all dates
+        min_change = ticker_data["Percent Change"].min()
+        
+        min_overall.append(min_change)
+        
+        # Find the date of the maximum percent change
+        max_change_date = ticker_data.loc[ticker_data["Percent Change"] == max_change]["Date"]
+        
+        max_overall_date.append(max_change_date.max())
+        
+        # Find the date of the minimum percent change
+        min_change_date = ticker_data.loc[ticker_data["Percent Change"] == min_change]["Date"]
+        
+        min_overall_date.append(min_change_date.min())
+        
+        # Find the average daily change for each date
+        date_change_avg = ticker_data.groupby(["Month-Day"]).agg(
+        {
+            "Percent Change":"mean"
+        
+        })["Percent Change"]
+        
+        date_change_avg_df = pd.DataFrame({
+            "Average Daily Percent Change": date_change_avg
+        })
+        
+        date_change_avg_final = date_change_avg.reset_index(drop=False)
+        
+        # Find the max average change
+        max_avg_change = date_change_avg.max()
+        
+        max_avg.append(max_avg_change.max())
+        
+        # Find the month and day for the max average change
+        max_average_date = date_change_avg_final.loc[date_change_avg_final["Percent Change"] == max_avg_change]["Month-Day"]
+        
+        max_avg_date.append(max_average_date.min())
+        
+        # Find the min average change
+        min_avg_change = date_change_avg.min()
+        
+        min_avg.append(min_avg_change.min())
+
+        # Find the month and day for the max average change
+        min_average_date = date_change_avg_final.loc[date_change_avg_final["Percent Change"] == min_avg_change]["Month-Day"]
+        
+        min_avg_date.append(min_average_date.min())
+
+    # Zip frame together with the appended lists
+    stock_results_df = pd.DataFrame(list(zip(name, max_overall, max_overall_date, \
+                                            min_overall, min_overall_date, max_avg, \
+                                            max_avg_date, min_avg, min_avg_date)))
+
+    # Rename the columns in the dataframe
+    stock_results_df  = stock_results_df.rename(columns={stock_results_df.columns[0]: "Stock Name", \
+                                                        stock_results_df.columns[1]: "Highest Percent Change", \
+                                                        stock_results_df.columns[2]: "Date of Highest Percent Change", \
+                                                        stock_results_df.columns[3]: "Lowest Percent Change", \
+                                                        stock_results_df.columns[4]: "Date of Lowest Percent Change", \
+                                                        stock_results_df.columns[5]: "Highest Average Change for a Specific Date", \
+                                                        stock_results_df.columns[6]: "Date of Highest Average Change", \
+                                                        stock_results_df.columns[7]: "Lowest Average Change for a Specific Date", \
+                                                        stock_results_df.columns[8]: "Date of Lowest Average Change"})
+
+    out = json.loads(stock_results_df.reset_index().to_json(orient='records'))
+    return jsonify(out)
+
 @app.route("/API")
 def api_query():
     return render_template("api.html")
-
-# @app.route("/pdf")
-# def pdf_query():
-#     return render_template("writepdf.html")
-
-# @app.route("/api/locations")
-# def locations_query():
-#     sqlite_conn = sqlite3.connect('db/stock.sqlite')
-#     cursor = sqlite_conn.cursor()
-#     rows = cursor.execute('SELECT latitude, longitude FROM address_api_table').fetchall()
-#     sqlite_conn.close()
-#     return jsonify([member[0] for member in cursor.description], rows)
-#     #return jsonify(rows)
 
 @app.route("/api/names")
 def names_query():
@@ -203,83 +308,29 @@ def company_detail_query(ticker_name):
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute("SELECT * FROM company_details WHERE ticker = ?", (ticker_name,)).fetchone()
-    comp_details_one = {}
-    comp_details_one_df = []
-    num_rows = len(rows)
-    for y in range(num_rows):
-        comp_details_one["Index"] = rows[y][0]
-        comp_details_one["m_ticker"] = rows[y][1]
-        comp_details_one["ticker"] = rows[y][2]
-        comp_details_one["comp_name"] = rows[y][3]
-        comp_details_one["comp_name_2"] = rows[y][4]
-        comp_details_one["exchange"] = rows[y][5]
-        comp_details_one["currency_code"] = rows[y][6]
-        comp_details_one["comp_desc"] = rows[y][7]
-        comp_details_one["address_line_1"] = rows[y][8]
-        comp_details_one["address_line_2"] = rows[y][9]
-        comp_details_one["city"] = rows[y][10]
-        comp_details_one["state_code"] = rows[y][11]
-        comp_details_one["country_code"] = rows[y][12]
-        comp_details_one["post_code"] = rows[y][13]
-        comp_details_one["phone_nbr"] = rows[y][14]
-        comp_details_one["fax_nbr"] = rows[y][15]
-        comp_details_one["email"] = rows[y][16]
-        comp_details_one["comp_url"] = rows[y][17]
-        comp_details_one["per_end_month_nbr"] = rows[y][19]
-        comp_details_one["zacks_x_ind_code"] = rows[y][20]
-        comp_details_one["zacks_x_ind_desc"] = rows[y][21]
-        comp_details_one["zacks_x_sector_code"] = rows[y][22]
-        comp_details_one["zacks_x_section_desc"] = rows[y][23]
-        comp_details_one["zacks_m_ind_code"] = rows[y][24]
-        comp_details_one["zacks_m_ind_desc"] = rows[y][25]
-        comp_details_one["emp_cnt"] = rows[y][28]
-        comp_details_one["market_val"] = rows[y][29]
-        comp_details_one["tot_revenue_f0"] = rows[y][30]
-        comp_details_one["net_income_f0"] = rows[y][31]
-        comp_details_one["pe_ratio_f1"] = rows[y][32]
-        comp_details_one["pe_ratio_12m"] = rows[y][33]
-        comp_details_one["peg_ratio"] = rows[y][34]
-        comp_details_one["price_per_sales"] = rows[y][35]
-        comp_details_one["price_book"] = rows[y][36]
-        comp_details_one["price_cash"] = rows[y][37]
-        comp_details_one["roe_q0"] = rows[y][38]
-        comp_details_one["roa_q0"] = rows[y][39]
-        comp_details_one["pre_tax_margin_q0"] = rows[y][40]
-        comp_details_one["net_margin_q0"] = rows[y][41]
-        comp_details_one["zacks_oper_margin"] = rows[y][42]
-        comp_details_one["inv_turnover"] = rows[y][43]
-        comp_details_one["curr_ratio_q0"] = rows[y][44]
-        comp_details_one["quick_ratio_q0"] = rows[y][45]
-        comp_details_one["debt_to_comm_equ"] = rows[y][46]
-        comp_details_one["iad"] = rows[y][47]
-        comp_details_one["div_yield"] = rows[y][48]
-        comp_details_one["shares_out"] = rows[y][49]
-        comp_details_one["avg_vol_20d"] = rows[y][50]
-        comp_details_one["bvps_f0"] = rows[y][51]
-        comp_details_one["deliuted_eps_net_4q"] = rows[y][52]
-        comp_details_one["per_end_date_qr0"] = rows[y][53]
-        comp_details_one["eps_mean_est"] = rows[y][54]
-        comp_details_one["eps_act_qr0"] = rows[y][55]
-        comp_details_one["eps_amt_diff_surp_qr0"] = rows[y][56]
-        comp_details_one["eps_pct_diff_surp_qr0"] = rows[y][57]
-        comp_details_one["per_end_date"] = rows[y][58]
-        comp_details_one["eps_mean_est_fr1"] = rows[y][59]
-        comp_details_one["per_end_date_fr2"] = rows[y][60]
-        comp_details_one["esp_mean_est_fr2"] = rows[y][61]
-        comp_details_one["eps_act_fr0"] = rows[y][62]
-        comp_details_one["rating_cnt_strong_buys"] = rows[y][63]
-        comp_details_one["rating_cnt_buys"] = rows[y][64]
-        comp_details_one["rating_cnt_holds"] = rows[y][65]
-        comp_details_one["rating_cnt_sells"] = rows[y][66]
-        comp_details_one["rating_cnt_strong_sells"] = rows[y][67]
-        comp_details_one["cont_recom_curr"] = rows[y][68]
-        comp_details_one["const_recom_7d_ago"] = rows[y][69]
-        comp_details_one["held_by_insiders_pct"] = rows[y][70]
-        comp_details_one["held_by_instutitions_pct"] = rows[y][71]
-        comp_details_one["free_float"] = rows[y][72]
-        comp_details_one_df.append(comp_details_one.copy())
+    dict = {}
+    dict["Company"] = rows[4]
+    dict["Address"] = rows[8]
+    dict["City"] = rows[10]
+    dict["State"] = rows[11]
+    dict["Zip"] = rows[13]
+    # dict["phone_nbr"] = rows[14]
+    # dict["fax_nbr"] = rows[15]
+    dict["Country"] = rows[12]
+    dict["Site"] = rows[17]
+    dict["Industry"] = rows[21]
+    dict["Employees"] = rows[28]
+    dict["Market Value"] = rows[29]
+    dict["P/E"] = rows[33]
+    dict["Outstanding Share"] = rows[49]
+    dict["Ticker"] = rows[2]
+    # dict["Insider Held"] = rows[79]
+    # dict["Insitutional Holding"] = rows[80]
+    dict["Exchange"] = rows[5]
+    dict["Currency"] = rows[6]
+    # dict["comp_desc"] = rows[7]
     sqlite_conn.close()
-    return jsonify(comp_details_df)
+    return jsonify(dict)
 
 @app.route("/api/stock_quarter_close")
 def stock_quarter_close_query():
