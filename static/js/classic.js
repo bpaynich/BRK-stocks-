@@ -91,16 +91,6 @@ d3.json(url3).then(function(data) {
 });
 
 }
-
-var doc = new jsPDF()
-var creat_pdf = d3.select("#pdf")
-
-creat_pdf.on('click', function() {
-  var source = window.document.getElementsByTagName("body")[0];
-  doc.fromHTML(
-    source,
-    15,
-    15
-    );
-  doc.save();
-  });
+//stock = 'V'
+buildMetadata(stock);
+buildCharts(stock);
