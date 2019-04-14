@@ -72,7 +72,7 @@ d3.json(url).then(function(data) {
           font: {
             family: 'Arial',
             size: 18,
-            color: '#ffffff'
+            color: '#000000'
           }
         },
       },
@@ -82,7 +82,7 @@ d3.json(url).then(function(data) {
           font: {
             family: 'Arial',
             size: 18,
-            color: '#ffffff'
+            color: '#000000'
           }
         }
       }
@@ -133,7 +133,7 @@ var layout2 = {
      font: {
        family: 'Arial',
        size: 18,
-       color: '#ffffff'
+       color: '#000000'
      }
    },
  },
@@ -143,7 +143,7 @@ var layout2 = {
      font: {
        family: 'Arial',
        size: 18,
-       color: '#ffffff'
+       color: '#000000'
      }
    }
  }
@@ -194,7 +194,7 @@ var layout = {
      font: {
        family: 'Arial',
        size: 18,
-       color: '#ffffff'
+       color: '#000000'
      }
    },
  },
@@ -204,7 +204,7 @@ var layout = {
      font: {
        family: 'Arial',
        size: 18,
-       color: '#ffffff'
+       color: '#000000'
      }
    }
  }
