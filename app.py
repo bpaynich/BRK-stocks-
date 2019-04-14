@@ -5,6 +5,7 @@ import pprint
 import googlemaps
 import gmaps
 import json
+import math
 import warnings
 import gmaps.geojson_geometries
 import functions
@@ -165,6 +166,15 @@ def stock_changes_query():
         min_average_date = date_change_avg_final.loc[date_change_avg_final["Percent Change"] == min_avg_change]["Month-Day"]
         
         min_avg_date.append(min_average_date.min())
+
+    # Round
+    def round_up(n, decimals=0):
+        multiplier = 10 ** decimals
+        return math.ceil(n * multiplier) / multiplier
+    max_overall = [round_up(n, 1) for n in max_overall]
+    min_overall = [round_up(n, 1) for n in min_overall]
+    max_avg = [round_up(n, 1) for n in max_avg]
+    min_avg = [round_up(n, 1) for n in min_avg]
 
     # Zip frame together with the appended lists
     stock_results_df = pd.DataFrame(list(zip(name, max_overall, max_overall_date, \
