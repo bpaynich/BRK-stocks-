@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <title>Dow Companies</title>
 
@@ -29,7 +30,7 @@
 		<link rel="stylesheet" type="text/css" href="static/css/style.css">
  
   </head>
-  <body style="background-color: rgb(7, 7, 83);">
+  <body style="background-color: #0F0082;">
 
 <div class="container-fluid">
 	<div class="row">
@@ -40,25 +41,25 @@
 			<br/>
 			<ul class="nav navbar navbar-dark bg-dark">
 					<li class="nav-item">
-						<a class="nav-link active" style="color: orange"href="/">Dow Stocks</a>
+						<a class="nav-link active" style="color: #FF5C00"href="/">Dow Stocks</a>
 					</li>
 					<li class="nav-item">
-							<a class="nav-link " style="color: orange"href="/company">Company info </a>
+							<a class="nav-link " style="color: #FF5C00"href="/company">Company Info </a>
 					</li>				
 					<li class="nav-item">
-							<a class="nav-link " style="color: orange"href="/classic">Classic </a>
+							<a class="nav-link " style="color: #FF5C00"href="/classic">Classic </a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link " style="color: orange"href="/modern">Modern</a>
+						<a class="nav-link " style="color: #FF5C00"href="/modern">Modern</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link " style="color: orange"href="/modern30">Modern30</a>
+						<a class="nav-link " style="color: #FF5C00"href="/modern30">Modern30</a>
 					</li>				
 					<li class="nav-item">
-						<a class="nav-link " style="color: orange"href="/news">News</a>
+						<a class="nav-link " style="color: #FF5C00"href="/news">News</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link " style="color: orange"href="/API">API</a>
+						<a class="nav-link " style="color: #FF5C00"href="/API">API</a>
 					</li>	
 					<!-- <li>
 						<a class="nav-link active dropdown-menu-right" href="/pdf">Write PDF</a>
@@ -83,36 +84,36 @@
 						<form action="/info" method="POST">
 							<select class="form-control" id='stock_menu' name="team">
 								<option value="">select stock</option>
-								<option value="MMM"> 3M</option>
-								<option value="AXP"> American Express</option>
-								<option value="AAPL"> Apple</option>
-								<option value="BA"> Boeing</option>
-								<option value="CAT"> Caterpillar</option>
-								<option value="CVX"> Chevron</option>
-								<option value="CSCO"> Cisco</option>
-								<option value="KO"> Coca-Cola</option>
-								<option value="DIS"> Disney</option>
+								<option value="MMM" id='16'> 3M</option>
+								<option value="AXP" id='1'> American Express</option>
+								<option value="AAPL" id='0'> Apple</option>
+								<option value="BA" id='2'> Boeing</option>
+								<option value="CAT" id='3'> Caterpillar</option>
+								<option value="CVX" id='5'> Chevron</option>
+								<option value="CSCO" id='4'> Cisco</option>
+								<option value="KO" id='14'> Coca-Cola</option>
+								<option value="DIS" id='6'> Disney</option>
 								<option value="DWDP"> DowDuPont Inc</option>
-								<option value="XOM"> Exxon Mobil</option>
-								<option value="GS"> Goldman Sachs</option>
-								<option value="HD"> Home Depot</option>
-								<option value="IBM"> IBM</option>
-								<option value="INTC"> Intel</option>
-								<option value="JNJ"> Johnson & Johnson</option>
-								<option value="JPM"> JPMorgan Chase</option>
-								<option value="MCD"> McDonald's</option>
-								<option value="MRK"> Merck</option>
-								<option value="MSFT"> Microsoft</option>
-								<option value="NKE"> Nike</option>
-								<option value="PFE"> Pfizer</option>
-								<option value="PG"> Procter & Gamble</option>
-								<option value="TRV"> Travelers Companies Inc</option>
-								<option value="UTX"> United Technologies</option>
-								<option value="UNH"> UnitedHealth</option>
-								<option value="VZ"> Verizon</option>
-								<option value="V"> Visa</option>
-								<option value="WMT"> Wal-Mart</option>
-								<option value="WBA"> Walgreen</option>
+								<option value="XOM" id='28'> Exxon Mobil</option>
+								<option value="GS" id='8'> Goldman Sachs</option>
+								<option value="HD" id='9'> Home Depot</option>
+								<option value="IBM" id='10'> IBM</option>
+								<option value="INTC" id='11'> Intel</option>
+								<option value="JNJ" id='12'> Johnson & Johnson</option>
+								<option value="JPM" id='13'> JPMorgan Chase</option>
+								<option value="MCD" id='15'> McDonald's</option>
+								<option value="MRK" id='17'> Merck</option>
+								<option value="MSFT" id='18'> Microsoft</option>
+								<option value="NKE" id='19'> Nike</option>
+								<option value="PFE" id='20'> Pfizer</option>
+								<option value="PG" id='21'> Procter & Gamble</option>
+								<option value="TRV" id='22'> Travelers Companies Inc</option>
+								<option value="UTX" id='24'> United Technologies</option>
+								<option value="UNH" id='23'> UnitedHealth</option>
+								<option value="VZ" id='26'> Verizon</option>
+								<option value="V" id='25'> Visa</option>
+								<option value="WMT" id='27'> Wal-Mart</option>
+								<option value="WBA" id=''> Walgreen</option>
 							</select>
 							<br>
 						</form>

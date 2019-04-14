@@ -17,7 +17,9 @@ var e = d3.select("#stock_menu");
 function handleChange(event) {
   var pick = document.getElementById("stock_menu");
   var stock = pick.options[pick.selectedIndex].value;
+  var index = pick.options[pick.selectedIndex].id;
   buildMetadata(stock);
+
 }
 
 e.on("change", handleChange);
@@ -41,7 +43,7 @@ function buildMetadata(ticker) {
     });
     
 // Store API query variables
-var url2 = "/api/address/" + ticker;
+var url2 = "/api/addresses" 
 
 // Grab the data with d3
 
