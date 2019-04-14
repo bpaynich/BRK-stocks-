@@ -1,10 +1,9 @@
 
 // Creating map object
-var map = L.map("map", {
+var headmap = L.map("map", {
   center: [39.8283,-98.5795],
   zoom: 4
 });
-
 
 // Adding tile layer to the map
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -12,7 +11,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   maxZoom: 18,
   id: "mapbox.streets",
   accessToken: API_KEY
-}).addTo(map);
+}).addTo(headmap);
 
 // Store API query variables
 var url = "/api/addresses";
@@ -35,17 +34,14 @@ d3.json(url, function(response) {
     var city = response.map(d => d.City)[i];
     var state = response.map(d => d.State)[i];
     var address = response.map(d => d.Address)[i];
-    console.log(lat,lng,name,city,state,address);
+    
     // Check for location property
    
       // Add a new marker to the cluster group and bind a pop-up
-      map.addLayer(L.marker([lat,lng])
+      headmap.addLayer(L.marker([lat,lng])
         .bindPopup(name + '<br/>' + address + '<br/>' + city + ", " + state)
         );
-    
-
   }
-  
 });
 
  

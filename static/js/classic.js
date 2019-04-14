@@ -6,6 +6,7 @@ function handleChange(event) {
   var pick = document.getElementById("stock_menu");
   var stock = pick.options[pick.selectedIndex].value;
   buildMetadata(stock);
+  d3.select("company_info").attr("class","panel-body table table-sm");
   buildCharts(stock);
 }
 
@@ -14,32 +15,24 @@ e.on("change", handleChange);
 function buildMetadata(ticker) {
 
   // Build the metadata panel
-   const url = "/api/company_detail/" + ticker;
-    // const url = "/api/company_detail/INTC";
-
-    let tbody = d3.select("#company_info");
-
-    tbody.html("");
-    
+  const url = "/api/company_detail/" + ticker;
+  let tbody = d3.select("#company_info");
+  
+  tbody.html("");
     d3.json(url).then(function(data) {
-      console.log(data)
       Object.entries(data).forEach(function([key, value]) {
         tbody.append("tr");
-         tbody.append("td").text(key + ":  ");
+        tbody.append("td").text( key + ":  ");
         tbody.append("td").text(value);
       });
     });
 }
-
-
-
 
 function buildCharts(ticker) {
 
     const url = "/api/master12/" + ticker;
 
     d3.json(url).then(function(data) {
-      console.log(data);
     // Build a Chart
   
     var trace1 = {
@@ -92,11 +85,15 @@ d3.json(url3).then(function(data) {
 
 }
 
+
+
 var doc = new jsPDF()
 var creat_pdf = d3.select("#pdf")
 
 creat_pdf.on('click', function() {
   var source = window.document.getElementsByTagName("div")[0];
+  doc.text(20, 20, 'Stock information');
+
   doc.fromHTML(
     source,
     15,

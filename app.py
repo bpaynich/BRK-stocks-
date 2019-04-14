@@ -205,7 +205,7 @@ def names_query():
     return jsonify(names_df)
 
 @app.route("/api/addresses")
-def address_api_query():
+def addresses_api_query():
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
     cursor = sqlite_conn.cursor()
     rows = cursor.execute('SELECT a.Company, a.Address, a.City, a.State, a.latitude, a.longitude, b.comp_name_2 FROM address_api_table as a INNER JOIN company_details as b ON a.Company = b.comp_name').fetchall()
@@ -306,6 +306,24 @@ def companies_details_query():
         comp_details_df.append(comp_details.copy())
     sqlite_conn.close()
     return jsonify(comp_details_df)
+
+@app.route("/api/address/<ticker_name>")
+def address_api_query(ticker_name):
+    sqlite_conn = sqlite3.connect('db/stock.sqlite')
+    cursor = sqlite_conn.cursor()
+    rows = cursor.execute("SELECT a.Company, a.Address, a.City, a.State, a.latitude, a.longitude, b.comp_name_2 FROM address_api_table as a INNER JOIN company_details as b ON a.Company = b.comp_name WHERE ticker = ?", (ticker_name,)).fetchone()
+    address = {}
+    address_df = []
+    address["Company_name"] = rows[0]
+    address["Address"] = rows[1]
+    address["City"] = rows[2]
+    address["State"] = rows[3]
+    address["Latitude"] = rows[4]
+    address["Longitude"] = rows[5]
+    address["Company"] = rows[6]
+    address_df.append(address.copy())
+    sqlite_conn.close()
+    return jsonify(address_df)
 
 @app.route("/api/company_detail/<ticker_name>")
 def company_detail_query(ticker_name):
