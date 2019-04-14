@@ -1,7 +1,43 @@
+function buildTable() {
 
-     const url = "/api/companies_details";
+  // Build the stock data table
+  const stockUrl = "api/stock_changes";
+ 
+  let tbody = d3.select("#stock_data");
+  tbody.html("");
+    
+    d3.json(stockUrl).then(function(stockData) {
+      console.log(stockData)
+      tbody.append("thead")
+      Object.keys(stockData[0]).forEach(function(key) {
+        //tbody.append("th");
+        tbody.append("th").text(key);
+      });
+      Object.entries(stockData).forEach(function([key, value]) {
+        console.log(key);
+        console.log(value);
+        tbody.append("tr");
+        //tbody.append("td").text(`${key}`);
+        tbody.append("td").text(value["index"]);
+        tbody.append("td").text(value["Stock Name"]);
+        tbody.append("td").text(value["Highest Percent Change"]);
+        tbody.append("td").text(value["Date of Highest Percent Change"]);
+        tbody.append("td").text(value["Lowest Percent Change"]);
+        tbody.append("td").text(value["Date of Lowest Percent Change"]);
+        tbody.append("td").text(value["Highest Average Change for a Specific Date"]);
+        tbody.append("td").text(value["Date of Highest Average Change"]);
+        tbody.append("td").text(value["Lowest Average Change for a Specific Date"]);
+        tbody.append("td").text(value["Date of Lowest Average Change"]);
+        
+      });
+    });
+ };
+ 
+ buildTable();
 
-     d3.json(url).then(function(data) {
+const url = "/api/companies_details";
+
+d3.json(url).then(function(data) {
     
       // Build a Chart
     var trace1 = {
