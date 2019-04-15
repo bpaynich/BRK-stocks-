@@ -44,7 +44,41 @@ function buildCharts(ticker) {
         
       var data1 = [trace1];
 
-    Plotly.newPlot("twelve_months_performance", data1);
+      var layout = {
+        legend: {
+          y: 0.5,
+          yref: 'paper',
+          font: {
+            family: 'Arial, sans-serif',
+            size: 20,
+            color: 'grey',
+          }
+        },
+        title:'Last 12 months Performance',
+        xaxis: {
+          title: {
+            text: 'Date',
+            font: {
+              family: 'Arial',
+              size: 18,
+              color: '#000000'
+            }
+          },
+        },
+        yaxis: {
+          title: {
+            text: 'Stock Price (Dollars)',
+            font: {
+              family: 'Arial',
+              size: 18,
+              color: '#000000'
+            }
+          }
+        }
+        
+      };
+
+    Plotly.newPlot("twelve_months_performance", data1, layout);
 
 });
 
@@ -62,7 +96,40 @@ d3.json(url2).then(function(data) {
         
       var data1 = [trace1];
 
-    Plotly.newPlot("stock_volume_chart", data1);
+      var layout = {
+        legend: {
+          y: 0.5,
+          yref: 'paper',
+          font: {
+            family: 'Arial, sans-serif',
+            size: 20,
+            color: 'grey',
+          }
+        },
+        title:'Volume over Time',
+        xaxis: {
+          title: {
+            text: 'Date',
+            font: {
+              family: 'Arial',
+              size: 18,
+              color: '#000000'
+            }
+          },
+        },
+        yaxis: {
+          title: {
+            text: 'Number of Shared Traded',
+            font: {
+              family: 'Arial',
+              size: 18,
+              color: '#000000'
+            }
+          }
+        }
+        
+      };
+    Plotly.newPlot("stock_volume_chart", data1, layout);
 
 });
 
@@ -80,7 +147,42 @@ d3.json(url3).then(function(data) {
         
       var data1 = [trace1];
 
-    Plotly.newPlot("increase_over_time", data1);
+      var layout = {
+        legend: {
+          y: 0.5,
+          yref: 'paper',
+          font: {
+            family: 'Arial, sans-serif',
+            size: 20,
+            color: 'grey',
+          }
+        },
+        title:'Performance over Time',
+        xaxis: {
+          title: {
+            text: 'Date',
+            font: {
+              family: 'Arial',
+              size: 18,
+              color: '#000000'
+            }
+          },
+        },
+        yaxis: {
+          title: {
+            text: 'Stock Price (Dollars)',
+            font: {
+              family: 'Arial',
+              size: 18,
+              color: '#000000'
+            }
+          }
+        }
+        
+      };
+    
+    
+    Plotly.newPlot("increase_over_time", data1, layout);
 
 });
 

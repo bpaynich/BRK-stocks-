@@ -101,6 +101,7 @@ function buildDescription(index) {
     
     d3.json(url).then(function(data) {
       console.log(index)
+      body.html('<h3>Company Description</h3>');
       body.append('p').text(data[index].comp_desc)
       // Object.entries(data).forEach(function([key, value]) {
       //   tbody.append("tr");
