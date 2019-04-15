@@ -31,11 +31,12 @@ function buildMetadata(ticker) {
   const url = "/api/company_detail/" + ticker;
  
   let tbody = d3.select("#company_table");
-  tbody.html("");
-    
+
+    tbody.html("");
+
     d3.json(url).then(function(data) {
-      console.log(data)
-      tbody.append("thead")
+      console.log(data);
+      tbody.html('<a><img src="static/img/'+ ticker +'.png"></a><br/>');
       Object.entries(data).forEach(function([key, value]) {
         tbody.append("tr");
          tbody.append("td").text(key);
@@ -99,4 +100,5 @@ function buildDescription(index) {
       //   tbody.append("td").text(value);
       // });
     });
-  };   
+  };  
+  
