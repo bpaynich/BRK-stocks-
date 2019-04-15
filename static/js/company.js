@@ -12,9 +12,6 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: API_KEY
 }).addTo(map);
 
-
-
-
 var e = d3.select("#stock_menu");
 
 function handleChange(event) {
@@ -53,7 +50,8 @@ function buildMap(index) {
   var url2 = "/api/addresses" 
   console.log('im working at this point')
   // Grab the data with d3
-  d3.json(url2, function(response) {  
+  //d3.json(url2, function(response) {  
+  d3.json(url2).then(function(response) {
     // Set the data location property to a variable
     console.log('hi you suck')
     var lat = response.map(d => d.Latitude)[index];  
@@ -62,14 +60,6 @@ function buildMap(index) {
     var city = response.map(d => d.City)[index];
     var state = response.map(d => d.State)[index];
     var address = response.map(d => d.Address)[index];
-      // var lat = data[index].Latitude;
-      // var lng = data[index].Longitude;
-      // var name = data[index].Company;
-      // var city = data[index].City;
-      // var state = data[index].State;
-      // var address = data[index].Address;
-      
-    map.panTo(lat,lng);
 
       // Adding tile layer to the map
       L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -83,6 +73,12 @@ function buildMap(index) {
       map.addLayer(L.marker([lat,lng])
         .bindPopup(name + '<br/>' + address + '<br/>' + city + ", " + state)
       );
+
+    // add a marker
+    var marker = L.marker([lat, lng],{}).addTo(map);
+    // console.log("IS THIS WORKING??")
+    // set the view
+    map.setView([lat, lng], 12);
   });
 };
 

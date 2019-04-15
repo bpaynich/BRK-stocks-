@@ -20,15 +20,14 @@ function buildTable() {
         //tbody.append("td").text(`${key}`);
         tbody.append("td").text(value["index"]);
         tbody.append("td").text(value["Stock Name"]);
-        tbody.append("td").text(value["Highest Percent Change"]);
+        tbody.append("td").text(value["Highest Percent Change"] + "%");
         tbody.append("td").text(value["Date of Highest Percent Change"]);
-        tbody.append("td").text(value["Lowest Percent Change"]);
+        tbody.append("td").text(value["Lowest Percent Change"] + "%");
         tbody.append("td").text(value["Date of Lowest Percent Change"]);
-        tbody.append("td").text(value["Highest Average Change for a Specific Date"]);
+        tbody.append("td").text(value["Highest Average Change for a Specific Date"] + "%");
         tbody.append("td").text(value["Date of Highest Average Change"]);
-        tbody.append("td").text(value["Lowest Average Change for a Specific Date"]);
+        tbody.append("td").text(value["Lowest Average Change for a Specific Date"] + "%");
         tbody.append("td").text(value["Date of Lowest Average Change"]);
-        
       });
     });
  };
