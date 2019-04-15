@@ -40,7 +40,7 @@ d3.json(url).then(function(data) {
     
       // Build a Chart
     var trace1 = {
-      x: data.map(d=>d.market_val * 1000),
+      x: data.map(d=>d.market_val * 1000000),
       y: data.map(d=>d.emp_cnt),
       mode: 'markers',
       type: 'bubble',
@@ -162,8 +162,8 @@ d3.json(url).then(function(data) {
 
  // Build a Chart
 var trace1 = {
- x: data.map(d=>d.market_val * 1000),
- y: data.map(d=>d.tot_revenue_f0),
+ x: data.map(d=>d.market_val * 1000000),
+ y: data.map(d=>d.tot_revenue_f0 * 1000000),
  mode: 'markers',
  type: 'bubble',
  text: data.map(d=>d.comp_name_2),
