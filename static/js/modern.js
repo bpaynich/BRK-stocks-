@@ -20,7 +20,7 @@ function buildMetadata(ticker) {
     let tbody = d3.select("#company_info");
 
     tbody.html("");
-    
+    tbody.html('<a><img src="static/img/'+ ticker +'.png"></a><br/>');
     d3.json(url).then(function(data) {
       console.log(data)
       Object.entries(data).forEach(function([key, value]) {
