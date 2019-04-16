@@ -195,7 +195,7 @@ def stock_changes_query():
     out = json.loads(stock_results_df.reset_index().to_json(orient='records'))
     return jsonify(out)
 
-@app.route("/API")
+@app.route("/api")
 def api_query():
     return render_template("api.html")
 
