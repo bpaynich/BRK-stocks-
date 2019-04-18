@@ -213,7 +213,7 @@ def names_query():
         names_df.append(names.copy())
     sqlite_conn.close()
     return jsonify(names_df)
-
+ 
 @app.route("/api/addresses")
 def addresses_api_query():
     sqlite_conn = sqlite3.connect('db/stock.sqlite')
