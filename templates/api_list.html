@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <title>Dow Companies</title>
+
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Our CSS -->
+		<link rel="stylesheet" type="text/css" href="static/css/style.css">
+ 
+  </head>
+  <body style="background-color: #0F0082;">
+
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-2">
+				</div>
+			<div class="col-md-8" style="background-color: white;">
+		<div class="col-md-12">
+			<br/>
+			<ul class="nav navbar navbar-dark bg-dark">
+					<li class="nav-item">
+						<a class="nav-link active" style="color: #FF5C00" href="/">Dow Stocks</a>
+					</li>
+					<li class="nav-item">
+							<a class="nav-link " style="color: #FF5C00" href="/company">Company Info </a>
+					</li>				
+					<li class="nav-item">
+							<a class="nav-link " style="color: #FF5C00"  href="/classic">Classic </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " style="color: #FF5C00"  href="/modern">Modern</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link " style="color: #FF5C00"href="/modern30">Modern30</a>
+										</li>
+                    <li class="nav-item">
+                        <a class="nav-link " style="color: #FF5C00"  href="/news">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " style="color: #FF5C00"  href="/api_list">API</a>
+                    </li>	
+				
+				</ul>
+
+			<br/>
+			<h3>API Information</h3>
+			<p>
+			Below you will find the links to the API routes	
+			</p>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel-body">
+						<table id="data_table" class="table">
+							<tbody>
+                                <tr><td>Company Details</td><td>http://stockheroes.herokuapp.com/api/company_detail/ticker</td></tr>
+                                <tr><td>Company Names</td><td>http://stockheroes.herokuapp.com/api/names</td></tr>
+																<tr><td>Company Addresses</td><td>http://stockheroes.herokuapp.com/api/addresses</td></tr>
+																<tr><td>Companies Details from ZACKS</td><td>http://stockheroes.herokuapp.com/api/companies_details</td></tr>
+                                <tr><td>Historical Stock information</td><td>http://stockheroes.herokuapp.com/api/company_detail/ticker</td></tr>
+																<tr><td>Historical Stock Quarter Close </td><td>http://stockheroes.herokuapp.com/api/stock_quarter_close/tikecr</td></tr>
+																<tr><td>Historical Stock Statistics </td><td>http://stockheroes.herokuapp.com/api/stock_changes</td></tr> -->
+							</tbody>
+                        </table>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-2">
+	</div>
+
+
+
+	</div>
+</div>
+  </body>
+</html>
