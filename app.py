@@ -186,7 +186,7 @@ def stock_changes_query():
 
 @app.route("/api_list")
 def api_query():
-    return render_template("api.html")
+    return render_template("api_list.html")
 
 @app.route("/api/names")
 def names_query():
