@@ -57,18 +57,7 @@ def modern30_query():
 
 @app.route("/news")
 def news_query():
-    # # Init
-    # newsapi = NewsApiClient(api_key='88414c712b5841f28b13a86369d03b40')
-    # # /v2/top-headlines
-    # top_headlines = newsapi.get_top_headlines(q='bitcoin',
-    #                                         sources='bbc-news,the-verge',
-    #                                         category='business',
-    #                                         language='en',
-    #                                         country='us')
-    # # /v2/sources
-    # sources = newsapi.get_sources()
     return render_template("news.html")
-
 
 @app.route("/api/stock_changes")
 def stock_changes_query():
@@ -195,7 +184,7 @@ def stock_changes_query():
     out = json.loads(stock_results_df.reset_index().to_json(orient='records'))
     return jsonify(out)
 
-@app.route("/api")
+@app.route("/api_list")
 def api_query():
     return render_template("api.html")
 
