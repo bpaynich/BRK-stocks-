@@ -55,9 +55,9 @@ def modern_query():
 def modern30_query():
     return render_template("modern2.html")
 
-@app.route("/news")
-def news_query():
-    return render_template("news.html")
+# @app.route("/news")
+# def news_query():
+#     return render_template("news.html")
 
 @app.route("/api/stock_changes")
 def stock_changes_query():

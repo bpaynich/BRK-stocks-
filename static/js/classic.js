@@ -190,28 +190,11 @@ d3.json(url3).then(function(data) {
 
 }
 
-<<<<<<< HEAD
-var doc = new jsPDF()
-=======
 
 
 //function to create PDF with table
->>>>>>> 80224f4fa747e083b80a342f0dd1ce110f407568
 var creat_pdf = d3.select("#pdf")
 creat_pdf.on('click', function() {
-<<<<<<< HEAD
-  var source = window.document.getElementsByTagName("div")[0];
-  doc.fromHTML(
-    source,
-    15,
-    15
-    );
-  doc.save("your_stock");
-  });
-
-
-
-=======
   var pick = document.getElementById("stock_menu");
   var stock = pick.options[pick.selectedIndex].value;
   const url = "/api/master12/" + stock;
@@ -258,4 +241,3 @@ creat_pdf.on('click', function() {
     doc.save("your_stock");
   });
 });
->>>>>>> 80224f4fa747e083b80a342f0dd1ce110f407568
