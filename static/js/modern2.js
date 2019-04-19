@@ -40,7 +40,7 @@ d3.json(url).then(function(data) {
     
       // Build a Chart
     var trace1 = {
-      x: data.map(d=>d.market_val * 1000000),
+      x: data.map(d=>d.market_val),
       y: data.map(d=>d.emp_cnt),
       mode: 'markers',
       type: 'bubble',
@@ -64,10 +64,10 @@ d3.json(url).then(function(data) {
           color: 'grey',
         }
       },
-      title:'Market Cap Vs. Employee Count',
+      title:'Market Value (Millions) Vs. Employee Count',
       xaxis: {
         title: {
-          text: 'Market Cap',
+          text: 'Market Value (Millions)',
           font: {
             family: 'Arial',
             size: 18,
@@ -100,7 +100,7 @@ d3.json(url).then(function(data) {
 d3.json(url).then(function(data) {
 
  // Build a Chart
-var trace1 = {
+var trace2 = {
  x: data.map(d=>d.price_per_sales),
  y: data.map(d=>d.price_cash),
  mode: 'markers',
@@ -113,7 +113,7 @@ var trace1 = {
  marker: { size: 12 }
 };
 
-var data = [ trace1 ];
+var data = [ trace2 ];
 
 var layout2 = {
  legend: {
@@ -125,10 +125,10 @@ var layout2 = {
      color: 'grey',
    }
  },
- title:'Sales vs. Cash Ratio',
+ title:'Price-Sales Ratio vs. Price-to-Cash Flow Ratio',
  xaxis: {
    title: {
-     text: 'Sales',
+     text: 'Price-Sales Ratio',
      font: {
        family: 'Arial',
        size: 18,
@@ -138,7 +138,7 @@ var layout2 = {
  },
  yaxis: {
    title: {
-     text: 'Cash',
+     text: 'Price-to-Cash Flow Ratio',
      font: {
        family: 'Arial',
        size: 18,
@@ -161,9 +161,9 @@ Plotly.newPlot('scatter_plot2', data, layout2);
 d3.json(url).then(function(data) {
 
  // Build a Chart
-var trace1 = {
- x: data.map(d=>d.market_val * 1000000),
- y: data.map(d=>d.tot_revenue_f0 * 1000000),
+var trace3 = {
+ x: data.map(d=>d.market_val),
+ y: data.map(d=>d.tot_revenue_f0),
  mode: 'markers',
  type: 'bubble',
  text: data.map(d=>d.comp_name_2),
@@ -174,9 +174,9 @@ var trace1 = {
  marker: { size: 12 }
 };
 
-var data = [ trace1 ];
+var data = [ trace3 ];
 
-var layout = {
+var layout3 = {
  legend: {
    y: 0.5,
    yref: 'paper',
@@ -186,10 +186,10 @@ var layout = {
      color: 'grey',
    }
  },
- title:'Market Cap Vs. Total Revenue',
+ title:'Market Value (Millions) Vs. Total Revenue (Millions)',
  xaxis: {
    title: {
-     text: 'Market Cap',
+     text: 'Market Value (Millions)',
      font: {
        family: 'Arial',
        size: 18,
@@ -199,7 +199,7 @@ var layout = {
  },
  yaxis: {
    title: {
-     text: 'Total Revenue',
+     text: 'Total Revenue (Millions)',
      font: {
        family: 'Arial',
        size: 18,
@@ -210,6 +210,108 @@ var layout = {
  
 };
 
-Plotly.newPlot('scatter_plot3', data, layout);
+Plotly.newPlot('scatter_plot3', data, layout3);
 
+});
+
+// const url = "/api/companies_details";
+
+d3.json(url).then(function(data) {
+var trace4 = {
+  x: data.map(d=>d.zacks_m_ind_desc),
+  y: data.map(d=>d.tot_revenue_f0),
+  type: 'bar',
+  text: data.map(d=>d.comp_name_2),
+  textposition: 'top center',
+  textfont: {
+    family:  'Raleway, sans-serif'
+  },
+  marker: { size: 12 }
+ };
+ var data = [ trace4 ];
+
+ var layout4 = {
+  legend: {
+    y: 0.5,
+    yref: 'paper',
+    font: {
+      family: 'Arial, sans-serif',
+      size: 20,
+      color: 'grey',
+    }
+  },
+  title:'Industry Type Vs. Total Revenue (Millions)',
+  xaxis: {
+    title: {
+      text: 'Industry Type',
+      font: {
+        family: 'Arial',
+        size: 18,
+        color: '#000000'
+      }
+    },
+  },
+  yaxis: {
+    title: {
+      text: 'Total Revenue (Millions)',
+      font: {
+        family: 'Arial',
+        size: 18,
+        color: '#000000'
+      }
+    }
+  }
+  
+ };
+Plotly.newPlot('bar_graph1', data, layout4);
+});
+
+d3.json(url).then(function(data) {
+  var trace5 = {
+    x: data.map(d=>d.state_code),
+    y: data.map(d=>d.market_val),
+    type: 'bar',
+    text: data.map(d=>d.comp_name_2),
+    textposition: 'top center',
+    textfont: {
+      family:  'Raleway, sans-serif'
+    },
+    marker: { size: 12 }
+   };
+var data = [ trace5 ];
+
+var layout5 = {
+ legend: {
+   y: 0.5,
+   yref: 'paper',
+   font: {
+     family: 'Arial, sans-serif',
+     size: 20,
+     color: 'grey',
+   }
+ },
+ title:'State Vs. Market Value (Millions)',
+ xaxis: {
+   title: {
+     text: 'State',
+     font: {
+       family: 'Arial',
+       size: 18,
+       color: '#000000'
+     }
+   },
+ },
+ yaxis: {
+   title: {
+     text: 'Market Value (Millions)',
+     font: {
+       family: 'Arial',
+       size: 18,
+       color: '#000000'
+     }
+   }
+ }
+ 
+};
+Plotly.newPlot('bar_graph2', data, layout5);
 });
