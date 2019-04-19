@@ -1,6 +1,6 @@
 
 var e = d3.select("#stock_menu");
-
+const pdf_ticker = '';
 // Function to handle input change
 function handleChange(event) {
   var pick = document.getElementById("stock_menu");
@@ -54,7 +54,7 @@ function buildCharts(ticker) {
             color: 'grey',
           }
         },
-        title:'Last 12 months Performance',
+        title:'Last 12 months Performance - ' + ticker,
         xaxis: {
           title: {
             text: 'Date',
@@ -106,7 +106,7 @@ d3.json(url2).then(function(data) {
             color: 'grey',
           }
         },
-        title:'Volume over Time',
+        title:'Volume over Time - ' + ticker,
         xaxis: {
           title: {
             text: 'Date',
@@ -157,7 +157,7 @@ d3.json(url3).then(function(data) {
             color: 'grey',
           }
         },
-        title:'Performance over Time',
+        title:'Performance over Time - ' + ticker,
         xaxis: {
           title: {
             text: 'Date',
@@ -188,15 +188,11 @@ d3.json(url3).then(function(data) {
 
 }
 
-
-
 var doc = new jsPDF()
 var creat_pdf = d3.select("#pdf")
 
 creat_pdf.on('click', function() {
   var source = window.document.getElementsByTagName("div")[0];
-  doc.text(20, 20, 'Stock information');
-
   doc.fromHTML(
     source,
     15,
@@ -204,3 +200,6 @@ creat_pdf.on('click', function() {
     );
   doc.save("your_stock");
   });
+
+
+
