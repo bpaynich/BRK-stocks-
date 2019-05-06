@@ -202,7 +202,7 @@ creat_pdf.on('click', function() {
   d3.json(url).then(function(data) {
     var doc = new jsPDF()
     // var source = window.document.getElementsByTagName("div");
-    doc.text(50, 20, 'Stock Data For The Past 12 Months');
+    doc.text(75, 20, 'Stock Data For 2018');
     doc.setFontSize(9);
     doc.setLineHeightFactor(1.75);
     var ticker = data.map(d => d.Ticker);
