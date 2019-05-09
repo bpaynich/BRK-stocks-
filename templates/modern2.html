@@ -20,50 +20,111 @@
 					<div class="col-md-8" style="background-color: white;">
 			<br/>
 				<div class="col-md-12">
-					<ul class="nav navbar navbar-dark bg-dark">
-						<li class="nav-item">
-							<a class="nav-link active" style="color: #FF5C00" href="/">Dow Stocks</a>
-						</li>
-						<li class="nav-item">
-								<a class="nav-link " style="color: #FF5C00" href="/company">Company Info </a>
-						</li>				
-						<li class="nav-item">
-								<a class="nav-link " style="color: #FF5C00"  href="/classic">Indicators</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link " style="color: #FF5C00"  href="/modern">Performance</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link " style="color: #FF5C00"href="/modern30">Other Indicators</a>
-						</li>
-						<!-- <li class="nav-item">
-							<a class="nav-link " style="color: #FF5C00"  href="/news">News</a>
-						</li> -->
-						<li class="nav-item">
-							<a class="nav-link " style="color: #FF5C00"  href="/api_list">API</a>
-						</li>	
-					</ul>
+						<ul class="nav navbar navbar-dark bg-dark">
+								<li class="nav-item">
+									<a class="nav-link active" style="color: #FF5C00" href="/">Dow Stocks</a>
+								</li>
+								<li class="nav-item">
+										<a class="nav-link " style="color: #FF5C00" href="/company">Company Info</a>
+								</li>				
+								<li class="nav-item">
+										<a class="nav-link " style="color: #FF5C00" href="/classic">Indicators</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link " style="color: #FF5C00" href="/modern">Performance</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link " style="color: #FF5C00" href="/modern30">Other Indicators</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link " style="color: #FF5C00" href="/API">API</a>
+								</li>	
+								<!-- <li>
+									<a class="nav-link active dropdown-menu-right" href="/pdf">Write PDF</a>
+								</li> -->
+							</ul>
 					<br/>
 					<h3>
 						Other Indicators
 					</h3>
 					<div class="row">
-						<div class="col-md-12">
-						<div id="stock_data" class="table table-sm"  style="text-align: center;">
-								<div id="table" class="panel-body table table-sm">
+							<div class="col-md-5">
+									<div id="company_info" class="panel-body table table-sm">
 										<table id="data_table" class="table table-sm">
+											<thead></thead>
 											<tbody>
-												<thead></thead>
-												<td></td>
+													Choose a stock parameter for your x and y axes to create a scatterplot.
 											</tbody>
 										</table>
-								</div>
-						</div>
-            <div id="scatter_plot1" style="height: 400px;"></div>
-            <div id="scatter_plot2" style="height: 400px;"></div>
-						<div id="scatter_plot3" style="height: 400px;"></div>
-						<div id="bar_graph1" style="height: 400px;"></div>
-						<div id="bar_graph2" style="height: 400px;"></div>                               
+									</div>
+							</div>
+							<div class="col-md-7">
+									<form action="/info" method="POST">
+										<select class="form-control" id="stock_parameters_x" name="team">
+											<option value="">select a parameter for your x-axis</option>
+											<option value="emp_cnt"> Employee Count</option>
+											<option value="market_val"> Market Value (Millions)</option>
+											<option value="tot_revenue_f0"> Total Revenue (Millions)</option>
+											<option value="net_income_f0"> Net Income</option>
+											<option value="peg_ratio"> Price/Earnings to Growth Ratio</option>
+											<option value="price_per_sales"> Price-Sales Ratio</option>
+											<option value="price_book"> Price-to-Book Ratio</option>
+											<option value="price_cash"> Price-to-Cash Flow Ratio</option>
+											<option value="roe_q0"> Return on Equity</option>
+											<option value="roa_q0"> Return on Assets</option>
+											<option value="pre_tax_margin_q0"> Pretax Profit Margin</option>
+											<option value="net_margin_q0"> Net Profit Margin</option>
+											<option value="zacks_oper_margin"> Operating Margin</option>
+											<option value="curr_ratio_q0"> Current Ratio</option>
+											<option value="quick_ratio_q0"> Quick Ratio</option>
+											<option value="debt_to_comm_equ"> Debt-to Equity Ratio</option>
+											<option value="iad"> Indicated Dividend</option>
+											<option value="div_yield"> Dividend Yield</option>
+											<option value="shares_out"> Outstanding Shares (Millions)</option>
+											<option value="bvps_f0"> Book Value of Equity Per Share</option>
+											<option value="deliuted_eps_net_4q"> Diluted Earnings Per Share</option>
+											<option value="eps_mean_est"> Mean Earnings Estimate</option>
+											<option value="eps_act_q0"> Actual Earnings Per Share</option>
+										</select>
+										<br>
+									</form>
+									<form action="/info" method="POST">
+										<select class="form-control" id="stock_parameters_y" name="team">
+											<option value="">select a parameter for your y-axis</option>
+											<option value="emp_cnt"> Employee Count</option>
+											<option value="market_val"> Market Value (Millions)</option>
+											<option value="tot_revenue_f0"> Total Revenue (Millions)</option>
+											<option value="net_income_f0"> Net Income</option>
+											<option value="peg_ratio"> Price/Earnings to Growth Ratio</option>
+											<option value="price_per_sales"> Price-Sales Ratio</option>
+											<option value="price_book"> Price-to-Book Ratio</option>
+											<option value="price_cash"> Price-to-Cash Flow Ratio</option>
+											<option value="roe_q0"> Return on Equity</option>
+											<option value="roa_q0"> Return on Assets</option>
+											<option value="pre_tax_margin_q0"> Pretax Profit Margin</option>
+											<option value="net_margin_q0"> Net Profit Margin</option>
+											<option value="zacks_oper_margin"> Operating Margin</option>
+											<option value="curr_ratio_q0"> Current Ratio</option>
+											<option value="quick_ratio_q0"> Quick Ratio</option>
+											<option value="debt_to_comm_equ"> Debt-to Equity Ratio</option>
+											<option value="iad"> Indicated Dividend</option>
+											<option value="div_yield"> Dividend Yield</option>
+											<option value="shares_out"> Outstanding Shares (Millions)</option>
+											<option value="bvps_f0"> Book Value of Equity Per Share</option>
+											<option value="deliuted_eps_net_4q"> Diluted Earnings Per Share</option>
+											<option value="eps_mean_est"> Mean Earnings Estimate</option>
+											<option value="eps_act_q0"> Actual Earnings Per Share</option>
+										</select>
+										<br>
+									</form>
+								<!-- <strong>
+										Last 12 months performance
+								</strong> -->
+								<!-- <div id="twelve_months_performance" style="height: 600px;"></div> -->
+							</div>
+            <div id="adaptive_plot" style="height: 400px;"></div>
+            <!-- <div id="scatter_plot2" style="height: 400px;"></div>
+            <div id="scatter_plot3" style="height: 400px;"></div>                           -->
             </div> 
 					</div>
 				</div>
